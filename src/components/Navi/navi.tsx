@@ -14,7 +14,7 @@ export default function Navi() {
   };
 
   return (
-    <div className="w-screen fixed z-10">
+    <div className="w-screen fixed z-20">
       <div
         className={`${
           open ? "scale-0" : "scale-100"
