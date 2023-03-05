@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Bars3Icon, UserIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  UserIcon,
+  UserGroupIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/solid";
 
 export default function Navi() {
   const [open, setOpen] = useState(false);
@@ -9,7 +14,7 @@ export default function Navi() {
   };
 
   return (
-    <div className="w-screen fixed">
+    <div className="w-screen fixed z-10">
       <div
         className={`${
           open ? "scale-0" : "scale-100"
@@ -27,17 +32,38 @@ export default function Navi() {
       ></div>
       <div
         className={`${
-          open ? "right-0" : "-right-[400px]"
-        } absolute h-screen w-[400px] bg-white transition-all duration-300
-          flex flex-col`}
+          open ? "right-0" : "-right-[300px]"
+        } absolute h-screen w-[300px] transition-all duration-300
+          flex flex-col bg-gray-100`}
       >
-        <div className="p-5 w-full flex flex-row">
+        <div className="p-4 w-full flex flex-row bg-white shadow-md">
           <div className="flex justify-center items-center p-3 rounded-full bg-gray-200">
             <UserIcon className="h-6 w-6 " />
           </div>
           <div className="flex flex-col ml-3">
             <div className=" font-bold ">Adrian</div>
             <div className=" text-green-500 text-sm ">Edit profile</div>
+          </div>
+        </div>
+        <div className="p-2 w-full flex flex-col bg-white mt-1.5 shadow-md">
+          <div className="flex  flex-row p-2 cursor-pointer">
+            <UserGroupIcon className="w-6 h-6" />
+            <div className="ml-4">Friends</div>
+          </div>
+
+          <div className="flex flex-row p-2 cursor-pointer">
+            <EnvelopeIcon className="w-6 h-6" />
+            <div className="ml-4">Message</div>
+          </div>
+        </div>
+        <div className="p-2 w-full flex flex-col justify-end bg-white mt-1.5 shadow-md flex-grow">
+          <div className="flex flex-row p-2 cursor-pointer">
+            <EnvelopeIcon className="w-6 h-6" />
+            <div className="ml-4">About us</div>
+          </div>
+          <div className="p-2 mt-2 flex cursor-pointer flex-col bg-violet-900 rounded text-white">
+            <div className="font-bold">Contact Us</div>
+            <div>Lorem ipsum dolor sit amet</div>
           </div>
         </div>
       </div>
