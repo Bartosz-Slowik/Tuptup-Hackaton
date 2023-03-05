@@ -1,19 +1,17 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import Navi from "./components/Navi/navi";
 import Map from "./components/Map/Map";
-import Add_event from './components/Add_event/add_event';
+import Events from "./components/events/events";
+
 function App() {
   return (
-
-    <div className="w-screen flex flex-col">
+    <div className="w-screen flex flex-col z-5">
       <Map />
       <Navi />
-      <Add_event />
+      <Events />
     </div>
-    
   );
 }
 
 export default App;
-
