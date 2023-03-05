@@ -28,7 +28,7 @@ export default function Navi() {
       <div
         className={`${
           open ? "right-0" : "-right-[400px]"
-        } absolute right-0 h-screen w-[400px] bg-white transition-all duration-300
+        } absolute h-screen w-[400px] bg-white transition-all duration-300
           flex flex-col`}
       >
         <div className="p-5 w-full flex flex-row">
