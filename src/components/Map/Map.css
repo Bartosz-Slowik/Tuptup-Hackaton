@@ -22,3 +22,10 @@ a.mapboxgl-ctrl-logo{
   width:0;
   height: 0;
 }
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
+  visibility: hidden;
+}
+.mapboxgl-popup-content{
+  color:white;
+  background-color: #7209B7;
+}

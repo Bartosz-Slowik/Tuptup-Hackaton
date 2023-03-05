@@ -17,7 +17,7 @@ const Map = () => {
       center: [-87.65, 41.84],
       zoom: 10,
     });
-
+    
     map.on("load", function () {
       // Add an image to use as a custom marker
       map.loadImage(
@@ -50,7 +50,25 @@ const Map = () => {
         }
       );
     });
-
+map.on('click', (event) => {
+      // If the user clicked on one of your markers, get its information.
+      const features = map.queryRenderedFeatures(event.point, {
+        layers: ['points'] // replace with your layer name
+      });
+      if (!features.length) {
+        return;
+      }
+      const feature = features[0];
+    
+    const pop = new mapboxgl.Popup({ offset: [0, -15] })
+  .setLngLat(feature.geometry.coordinates)
+  .setHTML(
+    `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+    <img alt="zdjecie" src="${feature.properties.image}"/>`
+  )
+  .addTo(map);
+    });
+    
 
 
     // Clean up on unmount
