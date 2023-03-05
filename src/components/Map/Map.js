@@ -17,8 +17,22 @@ const Map = () => {
       center: [19.94, 50.04],
       zoom: 12,
     });
-    
+
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    });
+    // Add the control to the map.
+    map.addControl(geolocate);
+
+    //FUNKCJA PODCZAS ŁADOWANIA MAPY
     map.on("load", function () {
+
+      //LOKALIZACJA USERA
+      geolocate.trigger();
+
       // Add an image to use as a custom marker
       map.loadImage(
         "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
@@ -50,7 +64,12 @@ const Map = () => {
         }
       );
     });
-map.on('click', (event) => {
+
+
+
+
+    //POPUPY
+    map.on('click', (event) => {
       // If the user clicked on one of your markers, get its information.
       const features = map.queryRenderedFeatures(event.point, {
         layers: ['points'] // replace with your layer name
@@ -59,16 +78,16 @@ map.on('click', (event) => {
         return;
       }
       const feature = features[0];
-    
-    const pop = new mapboxgl.Popup({ offset: [0, -15] })
-  .setLngLat(feature.geometry.coordinates)
-  .setHTML(
-    `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+
+      const pop = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+          `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
     <img alt="zdjecie" src="${feature.properties.image}"/>`
-  )
-  .addTo(map);
+        )
+        .addTo(map);
     });
-    
+
 
 
     // Clean up on unmount
