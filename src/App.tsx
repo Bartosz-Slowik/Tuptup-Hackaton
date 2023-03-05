@@ -7,8 +7,9 @@ function App() {
   return (
 
     <div className="w-screen flex flex-col">
-      <Navi />
       <Map />
+      <Navi />
+      
     </div>
     
   );
