@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Navi from "./components/navi";
-import Map from "./components/Map";
+import Navi from "./components/Navi/navi";
+import Map from "./components/Map/Map";
 
 function App() {
   return (
