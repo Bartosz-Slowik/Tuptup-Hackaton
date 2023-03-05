@@ -3,9 +3,11 @@
       {
         "type": "Feature",
         "properties": {
+          "id":1,
+          "participants": ["Paweł Samuła"],
           "title": "Chess Tournament",
           "description": "Don't play D4",
-          "type":"sport"
+          "type":"party"
         },
         "geometry": {
           "coordinates": [19.94173898739982, 50.071942298900524],
@@ -15,6 +17,8 @@
       {
         "type": "Feature",
         "properties": {
+          "id":2,
+          "participants": ["Adrian Szlag"],
           "title": "Kosciuszkon- Hackaton",
           "description": "24h of coding with free pizza and drinks",
           "type": "event"
@@ -27,9 +31,11 @@
       {
         "type": "Feature",
         "properties": {
+          "id":3,
+          "participants": ["Szymon Salamon"],
           "title": "Basketball Match",
           "description": "Let's play match like Michael Jordan",
-          "type": "sport"
+          "type": "party"
         },
         "geometry": {
           "coordinates": [19.91420674261340250, 50.06115043929323],
@@ -39,7 +45,9 @@
       {
         "type": "Feature",
         "properties": {
-          "title": "Meeting with Beer",
+          "id":4,
+          "participants": ["Sandra Kiwor"],
+          "title": "event with Beer",
           "description": "Talking with drinking",
           "type": "party"
         },
@@ -51,6 +59,8 @@
       {
         "type": "Feature",
         "properties": {
+          "id":5,
+          "participants": ["Kucyk"],
           "title": "House Party",
           "description": "Buy some pizza and drink",
           "type": "party"
@@ -63,9 +73,11 @@
       {
         "type": "Feature",
         "properties": {
-          "title": "MO lover meeting",
+          "id":6,
+          "participants": ["Jakub Baran"],
+          "title": "MO lover event",
           "description": "Let's make some exercise from counting method",
-          "type": "meeting"
+          "type": "event"
         },
         "geometry": {
           "coordinates": [19.9087720049917, 50.07584385679228],
@@ -75,9 +87,11 @@
       {
         "type": "Feature",
         "properties": {
+          "id":7,
+          "participants": ["Piotr Szkaradek"],
           "title": "Chilling",
           "description": "Chilling and vibing next to Wisla",
-          "type": "meeting"
+          "type": "event"
         },
         "geometry": {
           "coordinates": [19.968967706870806, 50.053455420944545],
