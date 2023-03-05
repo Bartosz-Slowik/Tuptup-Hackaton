@@ -3,102 +3,85 @@
       {
         "type": "Feature",
         "properties": {
-          "title": "Lincoln Park",
-          "description": "A northside park that is home to the Lincoln Park Zoo"
+          "title": "Chess Tournament",
+          "description": "Don't play D4",
+          "type":"sport"
         },
         "geometry": {
-          "coordinates": [-87.637596, 41.940403],
+          "coordinates": [19.94173898739982, 50.071942298900524],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Burnham Park",
-          "description": "A lakefront park on Chicago's south side"
+          "title": "Kosciuszkon- Hackaton",
+          "description": "24h of coding with free pizza and drinks",
+          "type": "event"
         },
         "geometry": {
-          "coordinates": [-87.603735, 41.829985],
+          "coordinates": [19.99629671664809, 50.08399993925693],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Millennium Park",
-          "description": "A downtown park known for its art installations and unique architecture"
+          "title": "Basketball Match",
+          "description": "Let's play match like Michael Jordan",
+          "type": "sport"
         },
         "geometry": {
-          "coordinates": [-87.622554, 41.882534],
+          "coordinates": [19.91420674261340250, 50.06115043929323],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Grant Park",
-          "description": "A downtown park that is the site of many of Chicago's favorite festivals and events"
+          "title": "Meeting with Beer",
+          "description": "Talking with drinking",
+          "type": "party"
         },
         "geometry": {
-          "coordinates": [-87.619185, 41.876367],
+          "coordinates": [19.941015236678783, 50.06301434728838],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Humboldt Park",
-          "description": "A large park on Chicago's northwest side"
+          "title": "House Party",
+          "description": "Buy some pizza and drink",
+          "type": "party"
         },
         "geometry": {
-          "coordinates": [-87.70199, 41.905423],
+          "coordinates": [19.971400758179364, 50.081457939328864],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Douglas Park",
-          "description": "A large park near in Chicago's North Lawndale neighborhood"
+          "title": "MO lover meeting",
+          "description": "Let's make some exercise from counting method",
+          "type": "meeting"
         },
         "geometry": {
-          "coordinates": [-87.699329, 41.860092],
+          "coordinates": [19.9087720049917, 50.07584385679228],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Calumet Park",
-          "description": "A park on the Illinois-Indiana border featuring a historic fieldhouse"
+          "title": "Chilling",
+          "description": "Chilling and vibing next to Wisla",
+          "type": "meeting"
         },
         "geometry": {
-          "coordinates": [-87.530221, 41.715515],
-          "type": "Point"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "title": "Jackson Park",
-          "description": "A lakeside park that was the site of the 1893 World's Fair"
-        },
-        "geometry": {
-          "coordinates": [-87.580389, 41.783185],
-          "type": "Point"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "title": "Columbus Park",
-          "description": "A large park in Chicago's Austin neighborhood"
-        },
-        "geometry": {
-          "coordinates": [-87.769775, 41.873683],
+          "coordinates": [19.968967706870806, 50.053455420944545],
           "type": "Point"
         }
       }
-    ],
-    "type": "FeatureCollection"
-  }
+    ]}
