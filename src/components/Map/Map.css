@@ -1,9 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .map-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  @apply md:left-[400px] md:bottom-0 top-0 left-0 right-0 bottom-[18rem];
 }
 
 .sidebarStyle {
@@ -18,18 +19,18 @@
   padding: 6px;
   font-weight: bold;
 }
-a.mapboxgl-ctrl-logo{
-  width:0;
+a.mapboxgl-ctrl-logo {
+  width: 0;
   height: 0;
 }
-.mapboxgl-ctrl.mapboxgl-ctrl-attrib{
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
   visibility: hidden;
 }
-.mapboxgl-popup-content{
-  color:white;
-  background-color: #7209B7;
+.mapboxgl-popup-content {
+  color: white;
+  background-color: #7209b7;
 }
-.mapboxgl-ctrl-group button{
-  width:0;
+.mapboxgl-ctrl-group button {
+  width: 0;
   height: 0;
 }
