@@ -3,24 +3,25 @@
       {
         "type": "Feature",
         "properties": {
-          "title": "Chess Tournament",
-          "description": "Don't play D4",
-          "type":"sport"
+          "title": "Kosciuszkon- Hackaton",
+          "description": "24h of coding with free pizza and drinks",
+          "type": "event",
+          "image": "kosciuszkon.jpg"
         },
         "geometry": {
-          "coordinates": [19.94173898739982, 50.071942298900524],
+          "coordinates": [19.99629671664809, 50.08399993925693],
           "type": "Point"
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "title": "Kosciuszkon- Hackaton",
-          "description": "24h of coding with free pizza and drinks",
-          "type": "event"
+          "title": "Chess Tournament",
+          "description": "Don't play D4",
+          "type":"sport"
         },
         "geometry": {
-          "coordinates": [19.99629671664809, 50.08399993925693],
+          "coordinates": [19.94173898739982, 50.071942298900524],
           "type": "Point"
         }
       },

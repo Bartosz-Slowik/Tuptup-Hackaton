@@ -85,8 +85,13 @@ const Map = () => {
       const pop = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML(
-          `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
-    <img alt="zdjecie" src="${feature.properties.image}"/>`
+          `<h3>${feature.properties.title}</h3><br><p>${feature.properties.description}</p>
+          <img alt="zdjecie" src="/uploads/${feature.properties.image}" onerror="this.style.display='none';"/>
+          <br>
+          <div class="quest">You want to Join ?</div>
+          <div class="center-ob">
+          <input type="button" class="acpt" value="Join!"/>
+          </div>`
         )
         .addTo(map);
     });
