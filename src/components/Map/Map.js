@@ -70,6 +70,7 @@ const Map = () => {
 
     //POPUPY
     map.on('click', (event) => {
+      
       // If the user clicked on one of your markers, get its information.
       const features = map.queryRenderedFeatures(event.point, {
         layers: ['points'] // replace with your layer name
@@ -78,7 +79,9 @@ const Map = () => {
         return;
       }
       const feature = features[0];
-
+      map.flyTo({
+        center: feature.geometry.coordinates
+        });
       const pop = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML(
