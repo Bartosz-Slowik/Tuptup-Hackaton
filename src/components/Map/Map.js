@@ -65,6 +65,7 @@ const Map = () => {
               <input type="button" class="acpt" value="Join!"/>
               </div>
               <br>
+              <h2>Twój znajomy bierze udział:<br>${feature.properties.participants[0]}</h2>
               `
             )
         ).addTo(map);
