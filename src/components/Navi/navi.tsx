@@ -36,7 +36,8 @@ export default function Navi() {
         } absolute h-screen w-[300px] transition-all duration-300
           flex flex-col bg-gray-100`}
       >
-        <div className="p-4 w-full flex flex-row bg-white shadow-md">
+        <div className="p-4 w-full flex flex-col bg-white shadow-md">
+        <div className=" flex flex-row">
           <div className="flex justify-center items-center p-3 rounded-full bg-gray-200">
             <UserIcon className="h-6 w-6 " />
           </div>
@@ -44,6 +45,8 @@ export default function Navi() {
             <div className=" font-bold ">Adrian</div>
             <div className=" text-green-500 text-sm ">Edit profile</div>
           </div>
+        </div>
+        <div className=" text-blue-500 text-xs px-1 pt-3">#Informatyka, #Sport, #PK, #Student</div>
         </div>
         <div className="p-2 w-full flex flex-col bg-white mt-1.5 shadow-md">
           <div className="flex  flex-row p-2 cursor-pointer">
