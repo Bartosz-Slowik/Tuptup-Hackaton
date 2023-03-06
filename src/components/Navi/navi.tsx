@@ -46,7 +46,7 @@ export default function Navi() {
             <div className=" text-green-500 text-sm ">Edit profile</div>
           </div>
         </div>
-        <div className=" text-blue-500 text-xs px-1 pt-3">#Informatyka, #Sport, #PK, #Student</div>
+        <div className=" text-blue-500 text-sm px-1 pt-3">#Informatyka #Sport #PK #Student</div>
         </div>
         <div className="p-2 w-full flex flex-col bg-white mt-1.5 shadow-md">
           <div className="flex  flex-row p-2 cursor-pointer">
