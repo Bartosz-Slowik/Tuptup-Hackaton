@@ -3,11 +3,13 @@ import {
   ArrowSmallUpIcon,
   CameraIcon,
   StarIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import { MdEmojiPeople } from "react-icons/md";
 import { BiCalendarEvent } from "react-icons/bi";
 import BigButton from "./bigButton";
 import Event from "./event";
+import SearchBar from "./searchBar";
 import places from "../places.json";
 
 const eventTypes = ["sport", "party", "event", "meeting"];
@@ -54,6 +56,14 @@ export default function Events() {
           } h-4 w-4 transition-all duration-500`}
         />
       </div>
+      <SearchBar
+        Icon={MagnifyingGlassIcon}
+        text="Search"
+        callCack={(input) => {
+          console.log(input);
+        }}
+        hide={!fullScreen}
+      />
       <div
         className={`${
           fullScreen && "flex-col-reverse"
