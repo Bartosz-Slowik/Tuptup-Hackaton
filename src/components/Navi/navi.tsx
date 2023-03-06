@@ -4,7 +4,10 @@ import {
   UserIcon,
   UserGroupIcon,
   EnvelopeIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/solid";
+
+import { IoMdImages } from "react-icons/io";
 
 export default function Navi() {
   const [open, setOpen] = useState(false);
@@ -37,16 +40,18 @@ export default function Navi() {
           flex flex-col bg-gray-100`}
       >
         <div className="p-4 w-full flex flex-col bg-white shadow-md">
-        <div className=" flex flex-row">
-          <div className="flex justify-center items-center p-3 rounded-full bg-gray-200">
-            <UserIcon className="h-6 w-6 " />
+          <div className=" flex flex-row">
+            <div className="flex justify-center items-center p-3 rounded-full bg-gray-200">
+              <UserIcon className="h-6 w-6 " />
+            </div>
+            <div className="flex flex-col ml-3">
+              <div className=" font-bold ">Adrian</div>
+              <div className=" text-green-500 text-sm ">Edit profile</div>
+            </div>
           </div>
-          <div className="flex flex-col ml-3">
-            <div className=" font-bold ">Adrian</div>
-            <div className=" text-green-500 text-sm ">Edit profile</div>
+          <div className=" text-blue-500 text-sm px-1 pt-3">
+            #Informatyka #Sport #PK #Student
           </div>
-        </div>
-        <div className=" text-blue-500 text-sm px-1 pt-3">#Informatyka #Sport #PK #Student</div>
         </div>
         <div className="p-2 w-full flex flex-col bg-white mt-1.5 shadow-md">
           <div className="flex  flex-row p-2 cursor-pointer">
@@ -56,12 +61,16 @@ export default function Navi() {
 
           <div className="flex flex-row p-2 cursor-pointer">
             <EnvelopeIcon className="w-6 h-6" />
-            <div className="ml-4">Message</div>
+            <div className="ml-4">Messages</div>
+          </div>
+          <div className="flex flex-row p-2 cursor-pointer">
+            <IoMdImages className="w-6 h-6" />
+            <div className="ml-4">Stories</div>
           </div>
         </div>
         <div className="p-2 w-full flex flex-col justify-end bg-white mt-1.5 shadow-md flex-grow">
           <div className="flex flex-row p-2 cursor-pointer">
-            <EnvelopeIcon className="w-6 h-6" />
+            <InformationCircleIcon className="w-6 h-6" />
             <div className="ml-4">About us</div>
           </div>
           <div className="p-2 mt-2 flex cursor-pointer flex-col bg-violet-900 rounded text-white">
