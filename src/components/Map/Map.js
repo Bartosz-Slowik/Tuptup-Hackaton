@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import geoJson from "../places.json";
@@ -7,9 +7,8 @@ import geoJson from "../places.json";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = (x, y) => {
+const Map = () => {
   const mapContainerRef = useRef(null);
-  const [mapObject, setMapObject] = useState(null);
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -76,16 +75,11 @@ const Map = (x, y) => {
         ).addTo(map);
       }
     });
-    setMapObject(map);
+
 
     // Clean up on unmount
     return () => map.remove();
   }, []);
-  if (mapObject) {
-    mapObject.flyTo({
-      center: [x, y],
-    });
-  }
 
 
 
