@@ -22,6 +22,7 @@ const Map = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
+      showAccuracyCircle: false,
       trackUserLocation: true
     });
     // Add the control to the map.
