@@ -113,46 +113,54 @@ export default function Events({ showCreateEventPopup }: Props) {
         }}
         hide={!fullScreen}
       />
-      <div
-        className={`${
-          fullScreen && "flex-col-reverse"
-        } flex flex-col md:flex-col-reverse flex-grow`}
-      >
-        <div className="flex flex-col p-2">
-          <div className="flex flex-row space-x-2">
-            <BigButton
-              Icon={CameraIcon}
-              text="Take a photo"
-              onClick={() => {}}
-            />
-            <BigButton
-              Icon={BiCalendarEvent}
-              text="Create event"
-              onClick={() => {
-                showCreateEventPopup();
-              }}
-            />
-          </div>
-          <div className="flex flex-row space-x-2 mt-2">
-            <BigButton
-              Icon={MdEmojiPeople}
-              text="Friends"
-              onClick={() => {
-                filter === "friends" ? setFilter("all") : setFilter("friends");
-              }}
-              isSelected={filter === "friends"}
-            />
-            <BigButton
-              Icon={StarIcon}
-              text="Events"
-              onClick={() => {
-                filter === "events" ? setFilter("all") : setFilter("events");
-              }}
-              isSelected={filter === "events"}
-            />
-          </div>
+      <div className={`flex flex-col flex-grow`}>
+        <div
+          className={`${
+            fullScreen && "!order-3"
+          } md:!order-3 flex flex-row space-x-2 py-2 px-2 order-1`}
+        >
+          <BigButton
+            Icon={CameraIcon}
+            className="bg-[#008B7C] text-white hover:!bg-[#00C2B0]"
+            text="Take a photo"
+            onClick={() => {}}
+          />
+          <BigButton
+            Icon={BiCalendarEvent}
+            className="bg-[#7209B7] text-white hover:!bg-[#9070A1]"
+            text="Create event"
+            onClick={() => {
+              showCreateEventPopup();
+            }}
+          />
         </div>
-        <div className="flex flex-col flex-grow p-2">
+        <div
+          className={`${
+            fullScreen && "!order-1"
+          } md:!order-1 flex flex-row space-x-2 pb-2 px-2 order-1`}
+        >
+          <BigButton
+            Icon={MdEmojiPeople}
+            text="Friends"
+            onClick={() => {
+              filter === "friends" ? setFilter("all") : setFilter("friends");
+            }}
+            isSelected={filter === "friends"}
+          />
+          <BigButton
+            Icon={StarIcon}
+            text="Events"
+            onClick={() => {
+              filter === "events" ? setFilter("all") : setFilter("events");
+            }}
+            isSelected={filter === "events"}
+          />
+        </div>
+        <div
+          className={`${
+            fullScreen && "!order-2"
+          } md:!order-2 flex flex-col flex-grow p-2  order-3`}
+        >
           {filteredEvents.map(
             (feature: {
               geometry: { coordinates: [] };

@@ -5,15 +5,22 @@ interface Props {
   text: string;
   onClick: () => void;
   isSelected?: boolean;
+  className?: string;
 }
 
-export default function bigButton({ Icon, text, onClick, isSelected }: Props) {
+export default function bigButton({
+  Icon,
+  text,
+  onClick,
+  isSelected,
+  className,
+}: Props) {
   return (
     <div
       className={`${
         isSelected && "!bg-[#007EFF]"
       } flex flex-row flex-1 bg-gray-200 
-      rounded-md p-2.5 cursor-pointer shadow-sm hover:bg-[#00B1D9]`}
+      rounded-md p-2.5 cursor-pointer shadow-sm hover:bg-[#00B1D9] ${className}`}
       onClick={() => onClick()}
     >
       {Icon && <Icon className="h-6 w-6" />}
