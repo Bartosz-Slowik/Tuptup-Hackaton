@@ -50,8 +50,8 @@
         "properties": {
           "id":4,
           "participants": ["Sandra Kiwor"],
-          "title": "event with Beer",
-          "description": "Talking with drinking",
+          "title": "meeting in the month",
+          "description": "Talking with eating",
           "type": "party",
           "image": "miasto.jpg"
           
@@ -84,7 +84,7 @@
           "title": "MO lover event",
           "description": "Let's make some exercise from counting method",
           "type": "event",
-          "image": "kosciuszkon.jpg"
+          "image": "MO.jpg"
         },
         "geometry": {
           "coordinates": [19.9087720049917, 50.07584385679228],
