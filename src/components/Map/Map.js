@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import geoJson from "../places.json";
+import * as ReactDOM from "react-dom/client";
+import Overview from "../overview";
 
 
 mapboxgl.accessToken =
@@ -53,8 +55,17 @@ const Map = () => {
         el.addEventListener('click', () => {
           map.flyTo({
             center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]],
-            offset: [0, 140],
+            offset: [0, 120],
           });
+          setTimeout(() => {
+            const root = ReactDOM.createRoot(document.querySelector(`[data-overview="${feature.properties.id}"]`));
+            root.render(
+            <Overview 
+            title={feature.properties.title}
+            description={feature.properties.description}
+            image={`/uploads/${feature.properties.image}`}
+            friends={feature.properties.participants} />);
+          }, 100);
           
           });
            
@@ -62,20 +73,24 @@ const Map = () => {
         new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(
           new mapboxgl.Popup({ offset: 25, anchor: "bottom" }) // add popups
             .setHTML(
-              `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
-              <img alt="zdjecie" src="/uploads/${feature.properties.image}" onerror="this.style.display='none';"/>
-              <br>
-              <div class="quest">You want to Join ?</div>
-              <div class="center-ob">
-              <input type="button" class="acpt" value="Join!"/>
-              </div>
-              <br>
-              <h2>Twój znajomy bierze udział:<br>${feature.properties.participants[0]}</h2>
+              `
+              <div data-overview="${feature.properties.id}">
               `
             )
         ).addTo(map);
+        
       }
     });
+    
+    // <h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+    //           <img alt="zdjecie" src="/uploads/${feature.properties.image}" onerror="this.style.display='none';"/>
+    //           <br>
+    //           <div class="quest">You want to Join ?</div>
+    //           <div class="center-ob">
+    //           <input type="button" class="acpt" value="Join!"/>
+    //           </div>
+    //           <br>
+    //           <h2>Twój znajomy bierze udział:<br>${feature.properties.participants[0]}</h2>
 
     // Clean up on unmount
     return () => map.remove();
