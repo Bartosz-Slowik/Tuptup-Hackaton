@@ -29,16 +29,7 @@ export default function CreateEvent({ hideCreateEventPopup }: Props) {
         <div className="text-center">How many people can come?</div>
         <input type="number" onChange={(e)=>{setAmount(e.target.value)}}className="h-12 m-2 p-2 bg-gray-200 rounded-full text-center" id="amount"></input>
         <div className="text-center">Location:</div>
-        <div className="flex flex-row">
-        <div className="flex flex-col text-center">
-          Lng:
-        <input type="number" onChange={(e)=>{setLeng(e.target.value)}}className="h-12 m-2 p-2 bg-gray-200 rounded-full text-center"></input>
-        </div>
-        <div className="flex flex-col text-center">
-          Lat:
-        <input type="number" onChange={(e)=>{setHeigh(e.target.value)}}className="h-12 m-2 p-2 bg-gray-200 rounded-full text-center"></input>
-        </div>
-        </div>
+        <input type="submit" className="h-12 m-2 p-2 bg-blue-400 rounded-full text-center" value="Set Location"></input>
         <input type="submit" className="h-12 m-2 p-2 bg-green-200 rounded-full text-center" value="Add Event" onClick={() => {
         hideCreateEventPopup();
         const el = document.createElement('div');
