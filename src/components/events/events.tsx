@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowSmallUpIcon,
   CameraIcon,
@@ -11,6 +11,7 @@ import BigButton from "./bigButton";
 import Event from "./event";
 import SearchBar from "./searchBar";
 import places from "../places.json";
+import { EventsClass } from "../../utils/repo";
 
 const eventTypes = ["event"];
 const friendsTypes = ["sport", "party", "meeting"];
@@ -29,6 +30,7 @@ export default function Events() {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
   const [search, setSearch] = useState("");
+  const [events, setEvents] = useState<EventsClass>(new EventsClass());
 
   const setFocus = (id: Number) => {
     const el1 = document.querySelector(`[data-id="${id}"]`);
@@ -55,6 +57,11 @@ export default function Events() {
     default:
       break;
   }
+
+  events.init();
+  filteredEvents.forEach((event: any) => {
+    events.show(event.properties.id);
+  });
 
   return (
     <div
