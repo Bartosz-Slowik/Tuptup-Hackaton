@@ -81,7 +81,7 @@
         "properties": {
           "id":6,
           "participants": ["Jakub Baran"],
-          "title": "MO lover event",
+          "title": "Calculus in C prelection",
           "description": "Let's make some exercise from counting method",
           "type": "event",
           "image": "MO.jpg"
