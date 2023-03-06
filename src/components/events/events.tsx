@@ -18,24 +18,39 @@ const filterEventsByType = (types: string[], array: any) => {
     return types.includes(item.properties.type);
   });
 };
+const filteredEventsByName = (name: string, array: any) => {
+  return array.filter((item: any) => {
+    return item.properties.title.toLowerCase().includes(name.toLowerCase());
+  });
+};
 
-interface Props {
-  setFocus: (coordinates: []) => void;
-}
-
-export default function Events({ setFocus }: Props) {
+export default function Events() {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
+  const [search, setSearch] = useState("");
 
-  let filteredEvents = [];
+  const setFocus = (id: Number) => {
+    const el1 = document.querySelector(`[data-id="${id}"]`);
+
+    const clk = new MouseEvent("click", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+
+    el1?.dispatchEvent(clk);
+
+    console.log(el1);
+  };
+
+  let filteredEvents = filteredEventsByName(search, places.features);
   switch (filter) {
     case "friends":
       break;
     case "events":
-      filteredEvents = filterEventsByType(eventTypes, places.features);
+      filteredEvents = filterEventsByType(eventTypes, filteredEvents);
       break;
     default:
-      filteredEvents = places.features;
       break;
   }
 
@@ -43,9 +58,9 @@ export default function Events({ setFocus }: Props) {
     <div
       className={`${
         fullScreen && " !bottom-0 !rounded-none !z-30"
-      } fixed flex flex-col -bottom-[20rem] left-0 right-0 bg-white z-10
+      } fixed flex flex-col -bottom-[65vh] left-0 right-0 bg-white z-10
         p-2 rounded-t-3xl shadow-3xl h-full transition-all duration-500
-        md:top-0 md:h-full md:transition-none md:rounded-none md:right-auto md:w-[400px]`}
+        md:top-0 md:h-full md:transition-none md:rounded-none md:right-auto md:w-[22rem]`}
     >
       <div
         className="flex flex-row justify-center cursor-pointer text-gray-500 md:hidden"
@@ -81,7 +96,7 @@ export default function Events({ setFocus }: Props) {
         Icon={MagnifyingGlassIcon}
         text="Search"
         callCack={(input) => {
-          console.log(input);
+          setSearch(input);
         }}
         hide={!fullScreen}
       />
@@ -126,7 +141,7 @@ export default function Events({ setFocus }: Props) {
           {filteredEvents.map(
             (feature: {
               geometry: { coordinates: [] };
-              properties: { id: React.Key | null | undefined; title: string };
+              properties: { id: any; title: string };
             }) => {
               return (
                 <Event
@@ -134,7 +149,7 @@ export default function Events({ setFocus }: Props) {
                   Icon={StarIcon}
                   text={feature.properties.title}
                   onClick={() => {
-                    setFocus(feature.geometry.coordinates);
+                    setFocus(feature.properties.id);
                   }}
                 />
               );

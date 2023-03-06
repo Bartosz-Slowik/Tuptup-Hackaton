@@ -7,13 +7,9 @@ import Events from "./components/events/events";
 function App() {
   return (
     <div className="w-screen flex flex-col z-5">
-      <Map/>
+      <Map />
       <Navi />
-      <Events
-        setFocus={(coor) => {
-          console.log(coor);
-        }}
-      />
+      <Events />
     </div>
   );
 }
