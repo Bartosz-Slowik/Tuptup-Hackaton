@@ -53,7 +53,7 @@ a.mapboxgl-ctrl-logo {
   color: white;
   background-color: #7209b7;
 }
-.nomapboxgl-ctrl-group button {
+.mapboxgl-ctrl-group button {
   width: 0;
   height: 0;
 }

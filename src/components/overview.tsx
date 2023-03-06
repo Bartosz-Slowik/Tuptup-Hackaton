@@ -14,12 +14,12 @@ export default function Overview({
   friends,
 }: Props) {
   return (
-    <div className="flex flex-col w-40  rounded-xl p-1 bg-white shadow-2xl ">
+    <div className="flex flex-col w-[12rem]  rounded-xl p-1 bg-white shadow-2xl ">
       {" "}
       <div className="flex justify-center font-bold text-lg px-2 pt-1 items-center text-center">
         {title}
       </div>
-      <div className="flex  justify-center font-bolder px-3 items-center text-center">
+      <div className="flex  justify-center font-bolder px-3 py-1 items-center text-center">
         {description}
       </div>
       <div className="-mx-1 py-1">
