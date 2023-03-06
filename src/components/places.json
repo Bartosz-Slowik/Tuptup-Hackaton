@@ -3,6 +3,21 @@
       {
         "type": "Feature",
         "properties": {
+          "id":2,
+          "participants": ["Adrian Szlag"],
+          "title": "Kosciuszkon- Hackaton",
+          "description": "24h of coding with free pizza and drinks",
+          "type": "event",
+          "image": "kosciuszkon.jpg"
+        },
+        "geometry": {
+          "coordinates": [19.99629671664809, 50.08399993925693],
+          "type": "Point"
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
           "id":1,
           "participants": ["Paweł Samuła"],
           "title": "Chess Tournament",
@@ -11,20 +26,6 @@
         },
         "geometry": {
           "coordinates": [19.94173898739982, 50.071942298900524],
-          "type": "Point"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "id":2,
-          "participants": ["Adrian Szlag"],
-          "title": "Kosciuszkon- Hackaton",
-          "description": "24h of coding with free pizza and drinks",
-          "type": "event"
-        },
-        "geometry": {
-          "coordinates": [19.99629671664809, 50.08399993925693],
           "type": "Point"
         }
       },

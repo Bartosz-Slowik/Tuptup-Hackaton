@@ -54,8 +54,15 @@ const Map = () => {
         new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(
           new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
-              `<h3>${feature.properties.participants[0]} jest tutaj!</h3><h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
-               <img alt="zdjecie" src="${feature.properties.image}"/>`
+              `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
+              <img alt="zdjecie" src="/uploads/${feature.properties.image}" onerror="this.style.display='none';"/>
+              <br>
+              <div class="quest">You want to Join ?</div>
+              <div class="center-ob">
+              <input type="button" class="acpt" value="Join!"/>
+              </div>
+              <br>
+              <h2>Twój znajomy<br>${feature.properties.participants[0]} jest tutaj!</h2>`
             )
         ).addTo(map);
       }

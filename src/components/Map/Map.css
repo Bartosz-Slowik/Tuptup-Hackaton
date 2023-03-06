@@ -101,5 +101,11 @@ h3{
   justify-content: center;
 }
 .mapboxgl-popup-content>img{
-  height:18em;
+  margin-top: 1em;
+  height:16em;
+}
+h2{
+  color:#FFBE46;
+  text-align: center;
+  font-size: 1.2em;
 }
