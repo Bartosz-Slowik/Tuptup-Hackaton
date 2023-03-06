@@ -12,7 +12,8 @@ import Event from "./event";
 import SearchBar from "./searchBar";
 import places from "../places.json";
 
-const eventTypes = ["sport", "party", "event", "meeting"];
+const eventTypes = ["event"];
+const friendsTypes = ["sport", "party", "meeting"];
 const filterEventsByType = (types: string[], array: any) => {
   return array.filter((item: any) => {
     return types.includes(item.properties.type);
@@ -46,6 +47,7 @@ export default function Events() {
   let filteredEvents = filteredEventsByName(search, places.features);
   switch (filter) {
     case "friends":
+      filteredEvents = filterEventsByType(friendsTypes, filteredEvents);
       break;
     case "events":
       filteredEvents = filterEventsByType(eventTypes, filteredEvents);
@@ -141,12 +143,20 @@ export default function Events() {
           {filteredEvents.map(
             (feature: {
               geometry: { coordinates: [] };
-              properties: { id: any; title: string };
+              properties: {
+                type: string;
+                id: any;
+                title: string;
+              };
             }) => {
               return (
                 <Event
                   key={feature.properties.id}
-                  Icon={StarIcon}
+                  Icon={
+                    eventTypes.includes(feature.properties.type)
+                      ? StarIcon
+                      : MdEmojiPeople
+                  }
                   text={feature.properties.title}
                   onClick={() => {
                     setFocus(feature.properties.id);
