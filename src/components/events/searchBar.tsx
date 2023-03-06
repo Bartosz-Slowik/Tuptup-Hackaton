@@ -18,6 +18,7 @@ export default function searchBar({ Icon, text, callCack, hide }: Props) {
           type="text"
           className="py-2.5 font-bolder bg-gray-200 rounded-md pl-10 focus:outline-none w-full shadow-sm"
           placeholder={text}
+          onChange={(e) => callCack(e.target.value)}
         />
       </div>
     </div>

@@ -4,7 +4,7 @@
 
 .map-container {
   position: absolute;
-  @apply md:left-[400px] md:bottom-0 top-0 left-0 right-0 bottom-[18rem];
+  @apply md:left-[22rem] md:bottom-0 top-0 left-0 right-0 bottom-[30vh];
 }
 .markerEvent {
   background-image: url('../../../public/pin.png');
