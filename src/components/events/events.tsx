@@ -26,7 +26,11 @@ const filteredEventsByName = (name: string, array: any) => {
   });
 };
 
-export default function Events() {
+interface Props {
+  showCreateEventPopup: () => void;
+}
+
+export default function Events({ showCreateEventPopup }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
   const [search, setSearch] = useState("");
@@ -124,7 +128,9 @@ export default function Events() {
             <BigButton
               Icon={BiCalendarEvent}
               text="Create event"
-              onClick={() => {}}
+              onClick={() => {
+                showCreateEventPopup();
+              }}
             />
           </div>
           <div className="flex flex-row space-x-2 mt-2">
