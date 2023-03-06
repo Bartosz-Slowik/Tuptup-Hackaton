@@ -1,18 +1,12 @@
-<svg width="60" height="64" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_8_148)">
-<path d="M48.75 26.25C48.75 44.105 30 54.375 30 54.375C30 54.375 11.25 44.105 11.25 26.25C11.25 21.2772 13.2254 16.5081 16.7417 12.9917C20.2581 9.47544 25.0272 7.5 30 7.5C34.9728 7.5 39.7419 9.47544 43.2583 12.9917C46.7746 16.5081 48.75 21.2772 48.75 26.25Z" fill="#7209B7" stroke="#7209B7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M37.5 26.25C37.5 28.2391 36.7098 30.1468 35.3033 31.5533C33.8968 32.9598 31.9891 33.75 30 33.75C28.0109 33.75 26.1032 32.9598 24.6967 31.5533C23.2902 30.1468 22.5 28.2391 22.5 26.25C22.5 24.2609 23.2902 22.3532 24.6967 20.9467C26.1032 19.5402 28.0109 18.75 30 18.75C31.9891 18.75 33.8968 19.5402 35.3033 20.9467C36.7098 22.3532 37.5 24.2609 37.5 26.25Z" fill="white" stroke="#7209B7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<filter id="filter0_d_8_148" x="-4" y="0" width="68" height="68" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8_148"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8_148" result="shape"/>
-</filter>
-</defs>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+<g id="SVGRepo_iconCarrier"> <path d="M20 10V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V10M20 10H4M20 10V11.75M4 10V19C4 20.1046 4.89543 21 6 21H11M8 3V7M16 3V7" stroke="#9D007D" stroke-width="2" stroke-linecap="round"/> <path d="M16.723 13.666C16.8255 13.4196 17.1745 13.4196 17.277 13.666L18.2521 16.0105C18.2953 16.1144 18.393 16.1854 18.5052 16.1944L21.0363 16.3973C21.3023 16.4186 21.4102 16.7506 21.2075 16.9242L19.279 18.5761C19.1936 18.6493 19.1563 18.7641 19.1824 18.8735L19.7716 21.3435C19.8335 21.6031 19.5511 21.8082 19.3234 21.6691L17.1564 20.3455C17.0604 20.2869 16.9396 20.2869 16.8436 20.3455L14.6766 21.6691C14.4489 21.8082 14.1665 21.6031 14.2284 21.3435L14.8176 18.8735C14.8437 18.7641 14.8064 18.6493 14.721 18.5761L12.7925 16.9242C12.5898 16.7506 12.6977 16.4186 12.9637 16.3973L15.4948 16.1944C15.607 16.1854 15.7047 16.1144 15.7479 16.0105L16.723 13.666Z" fill="#9D007D"/> </g>
+
 </svg>

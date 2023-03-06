@@ -7,14 +7,14 @@
   @apply md:left-[400px] md:bottom-0 top-0 left-0 right-0 bottom-[18rem];
 }
 .markerEvent {
-  background-image: url('../../../public/pin.png');
+  background-image: url('../../../public/pin.svg');
   background-size: cover;
   width: 3.5rem;
   height: 3.5rem;
   cursor: pointer;
 }
 .markerParty {
-  background-image: url('../../../public/party.svg');
+  background-image: url('../../../public/beer.svg');
   background-size: cover;
   width: 3.5rem;
   height: 3.5rem;
