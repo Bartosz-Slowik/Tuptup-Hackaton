@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import geoJson from "../places.json";
 
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = () => {
+const Map = (x, y) => {
   const mapContainerRef = useRef(null);
+  const [mapObject, setMapObject] = useState(null);
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -49,13 +51,16 @@ const Map = () => {
         }
         el.addEventListener('click', () => {
           map.flyTo({
-            center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]+0.006],
+            center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]],
           });
+          setTimeout(() => {
+            map.panBy([0, -120], { duration: 2000 });
+          }, 200);
           });
            
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
+          new mapboxgl.Popup({ offset: 25, anchor: "bottom" }) // add popups
             .setHTML(
               `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>
               <img alt="zdjecie" src="/uploads/${feature.properties.image}" onerror="this.style.display='none';"/>
@@ -71,10 +76,18 @@ const Map = () => {
         ).addTo(map);
       }
     });
+    setMapObject(map);
 
     // Clean up on unmount
     return () => map.remove();
   }, []);
+  if (mapObject) {
+    mapObject.flyTo({
+      center: [x, y],
+    });
+  }
+
+
 
   return <div className="map-container" ref={mapContainerRef} />;
 };
