@@ -53,10 +53,9 @@ const Map = () => {
         el.addEventListener('click', () => {
           map.flyTo({
             center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]],
+            offset: [0, 140],
           });
-          setTimeout(() => {
-            map.panBy([0, -120], { duration: 2000 });
-          }, 200);
+          
           });
            
         // make a marker for each feature and add to the map
