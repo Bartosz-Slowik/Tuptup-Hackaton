@@ -16,7 +16,8 @@ export default function CreateEvent({ hideCreateEventPopup }: Props) {
     <div
       className={` z-30 bg-black/70 right-0 bottom-0 fixed left-0 top-0 flex justify-center items-center`}
     >
-      <div className="bg-white rounded-sm p-4 flex flex-col" onClick={()=>{}}>
+      <div className="bg-white rounded-sm p-4 flex flex-col" >
+        <div className="text-right text-xl" onClick={()=>{hideCreateEventPopup();}}>x</div>
         <input type="text" placeholder="Title" className="m-2 p-2 bg-gray-200 rounded-full text-center" id="title"
         onChange={(e)=>{setTitle(e.target.value)}}></input>
         <input onChange={(e)=>{setDesc(e.target.value)}}type="text" placeholder="Description" className="h-12 m-2 p-2 bg-gray-200 rounded-full text-center" id="desc"></input>
