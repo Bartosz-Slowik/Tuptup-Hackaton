@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import geoJson from "../places.json";
@@ -8,7 +7,6 @@ import geoJson from "../places.json";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = () => {
 const Map = () => {
   const mapContainerRef = useRef(null);
 
