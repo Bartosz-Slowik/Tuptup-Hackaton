@@ -121,13 +121,13 @@ export default function Events({ showCreateEventPopup }: Props) {
         >
           <BigButton
             Icon={CameraIcon}
-            className="bg-[#008B7C] text-white hover:!bg-[#00C2B0]"
+            className="!bg-[#008B7C] !text-white hover:!bg-[#00C2B0]"
             text="Take a photo"
             onClick={() => {}}
           />
           <BigButton
             Icon={BiCalendarEvent}
-            className="bg-[#7209B7] text-white hover:!bg-[#9070A1]"
+            className="!bg-[#7209B7] !text-white hover:!bg-[#9070A1]"
             text="Create event"
             onClick={() => {
               showCreateEventPopup();
