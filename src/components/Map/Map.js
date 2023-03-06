@@ -22,6 +22,7 @@ const Map = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
+      showAccuracyCircle: false,
       trackUserLocation: true
     });
     // Add the control to the map.
@@ -40,12 +41,15 @@ const Map = () => {
         if (feature.properties.type === 'party') {
           el.className = 'markerParty';
         }
+        if (feature.properties.type === 'sport') {
+          el.className = 'markerSport';
+        }
         else if (feature.properties.type === 'event') {
           el.className = 'markerEvent';
         }
         el.addEventListener('click', () => {
           map.flyTo({
-            center: feature.geometry.coordinates
+            center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]+0.006],
           });
           });
            
@@ -61,7 +65,8 @@ const Map = () => {
               <input type="button" class="acpt" value="Join!"/>
               </div>
               <br>
-              <h2>Twój znajomy<br>${feature.properties.participants[0]} jest tutaj!</h2>`
+              <h2>Twój znajomy bierze udział:<br>${feature.properties.participants[0]}</h2>
+              `
             )
         ).addTo(map);
       }

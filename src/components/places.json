@@ -22,7 +22,7 @@
           "participants": ["Paweł Samuła"],
           "title": "Chess Tournament",
           "description": "Don't play D4",
-          "type":"party"
+          "type":"sport"
         },
         "geometry": {
           "coordinates": [19.94173898739982, 50.071942298900524],
@@ -36,7 +36,7 @@
           "participants": ["Szymon Salamon"],
           "title": "Basketball Match",
           "description": "Let's play match like Michael Jordan",
-          "type": "party"
+          "type": "sport"
         },
         "geometry": {
           "coordinates": [19.91420674261340250, 50.06115043929323],
