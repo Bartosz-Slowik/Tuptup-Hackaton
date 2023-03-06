@@ -11,7 +11,7 @@ export default function bigButton({ Icon, text, onClick, isSelected }: Props) {
   return (
     <div
       className={`${
-        isSelected && "bg-[#007EFF]"
+        isSelected && "!bg-[#007EFF]"
       } flex flex-row flex-1 bg-gray-200 
       rounded-md p-2.5 cursor-pointer shadow-sm hover:bg-[#00B1D9]`}
       onClick={() => onClick()}
