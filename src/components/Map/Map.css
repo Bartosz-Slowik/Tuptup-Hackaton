@@ -14,13 +14,19 @@
   cursor: pointer;
 }
 .markerParty {
-  background-image: url('https://img.icons8.com/color/512/filled-star.png');
+  background-image: url('../../../public/party.svg');
   background-size: cover;
   width: 3.5rem;
   height: 3.5rem;
   cursor: pointer;
 }
-
+.markerSport{
+  background-image: url('../../../public/sport.svg');
+  background-size: cover;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
 .sidebarStyle {
   display: inline-block;
   position: absolute;

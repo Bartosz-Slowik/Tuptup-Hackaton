@@ -41,6 +41,9 @@ const Map = () => {
         if (feature.properties.type === 'party') {
           el.className = 'markerParty';
         }
+        if (feature.properties.type === 'sport') {
+          el.className = 'markerSport';
+        }
         else if (feature.properties.type === 'event') {
           el.className = 'markerEvent';
         }
@@ -62,7 +65,7 @@ const Map = () => {
               <input type="button" class="acpt" value="Join!"/>
               </div>
               <br>
-              <h2>Twój znajomy<br>${feature.properties.participants[0]} jest tutaj!</h2>`
+              `
             )
         ).addTo(map);
       }
