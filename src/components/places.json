@@ -22,7 +22,7 @@
           "participants": ["Paweł Samuła"],
           "title": "Chess Tournament",
           "description": "Don't play D4",
-          "type":"sport",
+          "type":"event",
           "image": "szachy.jpg"
         },
         "geometry": {
@@ -50,9 +50,9 @@
         "properties": {
           "id":4,
           "participants": ["Sandra Kiwor"],
-          "title": "meeting in the month",
+          "title": "PK get together",
           "description": "Talking with eating",
-          "type": "party",
+          "type": "sport",
           "image": "miasto.jpg"
           
         },
@@ -98,7 +98,7 @@
           "participants": ["Piotr Szkaradek"],
           "title": "Chilling",
           "description": "Chilling and vibing next to Wisla",
-          "type": "event",
+          "type": "party",
           "image": "rzeka.jpg"
         },
         "geometry": {

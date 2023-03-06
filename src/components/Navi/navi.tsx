@@ -75,7 +75,7 @@ export default function Navi() {
           </div>
           <div className="p-2 mt-2 flex cursor-pointer flex-col bg-violet-900 rounded text-white">
             <div className="font-bold">Contact Us</div>
-            <div>Lorem ipsum dolor sit amet</div>
+            <div>For advertising and colaboration</div>
           </div>
         </div>
       </div>
