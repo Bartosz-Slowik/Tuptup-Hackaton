@@ -105,5 +105,50 @@
           "coordinates": [19.968967706870806, 50.053455420944545],
           "type": "Point"
         }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id":8,
+          "participants": ["Piotr Szkaradek"],
+          "title": "Basketball Match",
+          "description": "Need 2 ppl to play with us",
+          "type": "sport",
+          "image": "Kosz.jpg"
+        },
+        "geometry": {
+          "coordinates": [19.995934765275873, 50.086139570390586],
+          "type": "Point"
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id":9,
+          "participants": ["Sandra Kiwor"],
+          "title": "Study Together",
+          "description": "Can someone help me with Algebra?",
+          "type": "sport",
+          "image": "algebra.jpg"
+        },
+        "geometry": {
+          "coordinates": [19.997880308725023, 50.086144820067254],
+          "type": "Point"
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id":10,
+          "participants": ["Piotr Szkaradek"],
+          "title": "Quick Poker",
+          "description": "Need a 4th person to play some",
+          "type": "party",
+          "image": "poker.jpeg"
+        },
+        "geometry": {
+          "coordinates": [20.001129974664742, 50.08522376435156],
+          "type": "Point"
+        }
       }
     ]}

@@ -14,10 +14,9 @@ const Map = () => {
 
   // Initialize map when component mounts
   useEffect(() => {
-    console.log("asdfsadf")
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/mapbox/navigation-day-v1",
       center: [19.94, 50.04],
       zoom: 12,
     });
