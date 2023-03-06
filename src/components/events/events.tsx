@@ -181,6 +181,7 @@ export default function Events({ showCreateEventPopup }: Props) {
                   text={feature.properties.title}
                   onClick={() => {
                     setFocus(feature.properties.id);
+                    setFullScreen(false);
                   }}
                 />
               );
