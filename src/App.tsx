@@ -9,7 +9,11 @@ function App() {
     <div className="w-screen flex flex-col z-5">
       <Map />
       <Navi />
-      <Events />
+      <Events
+        setFocus={(coor) => {
+          console.log(coor);
+        }}
+      />
     </div>
   );
 }

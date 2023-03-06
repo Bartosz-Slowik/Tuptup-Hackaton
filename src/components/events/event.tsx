@@ -9,7 +9,7 @@ interface Props {
 export default function bigButton({ Icon, text, onClick }: Props) {
   return (
     <div
-      className="flex flex-row p-2.5 cursor-pointer"
+      className="flex flex-row p-2.5 cursor-pointer "
       onClick={() => onClick()}
     >
       {Icon && <Icon className="h-6 w-6" />}

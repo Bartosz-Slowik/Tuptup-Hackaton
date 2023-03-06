@@ -13,10 +13,31 @@ import SearchBar from "./searchBar";
 import places from "../places.json";
 
 const eventTypes = ["sport", "party", "event", "meeting"];
+const filterEventsByType = (types: string[], array: any) => {
+  return array.filter((item: any) => {
+    return types.includes(item.properties.type);
+  });
+};
 
-export default function Events() {
+interface Props {
+  setFocus: (coordinates: []) => void;
+}
+
+export default function Events({ setFocus }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
+
+  let filteredEvents = [];
+  switch (filter) {
+    case "friends":
+      break;
+    case "events":
+      filteredEvents = filterEventsByType(eventTypes, places.features);
+      break;
+    default:
+      filteredEvents = places.features;
+      break;
+  }
 
   return (
     <div
@@ -102,37 +123,23 @@ export default function Events() {
           </div>
         </div>
         <div className="flex flex-col flex-grow p-2">
-          {places.features.map((feature) => {
-            switch (filter) {
-              case "all":
-                return (
-                  <Event
-                    Icon={StarIcon}
-                    text={feature.properties.title}
-                    onClick={() => {}}
-                  />
-                );
-              case "events":
-                if (eventTypes.includes(feature.properties.type))
-                  return (
-                    <Event
-                      Icon={StarIcon}
-                      text={feature.properties.title}
-                      onClick={() => {}}
-                    />
-                  );
-                break;
-              case "friends":
-                if (!eventTypes.includes(feature.properties.type))
-                  return (
-                    <Event
-                      Icon={StarIcon}
-                      text={feature.properties.title}
-                      onClick={() => {}}
-                    />
-                  );
+          {filteredEvents.map(
+            (feature: {
+              geometry: { coordinates: [] };
+              properties: { id: React.Key | null | undefined; title: string };
+            }) => {
+              return (
+                <Event
+                  key={feature.properties.id}
+                  Icon={StarIcon}
+                  text={feature.properties.title}
+                  onClick={() => {
+                    setFocus(feature.geometry.coordinates);
+                  }}
+                />
+              );
             }
-          })}
+          )}
         </div>
       </div>
     </div>
