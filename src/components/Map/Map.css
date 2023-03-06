@@ -16,8 +16,8 @@
 .markerParty {
   background-image: url('../../../public/party.svg');
   background-size: cover;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
 }
 .markerSport{
@@ -108,7 +108,8 @@ h3{
 }
 .mapboxgl-popup-content>img{
   margin-top: 1em;
-  height: 12em;
+  height: 14em;
+  width: auto;
 }
 h2{
   color:#FFBE46;
