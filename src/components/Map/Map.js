@@ -46,7 +46,7 @@ const Map = () => {
         }
         el.addEventListener('click', () => {
           map.flyTo({
-            center: feature.geometry.coordinates
+            center: [feature.geometry.coordinates[0], feature.geometry.coordinates[1]+0.006],
           });
           });
            
