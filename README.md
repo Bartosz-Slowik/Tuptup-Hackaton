@@ -1,10 +1,9 @@
-# 2023 Kościuszkon submission
+# MeetNow - Team Project for 2023 PZ class
 
 App created wit React, Tailwind and Boxmap
-by team: "TupTup"
 
 Adrian Szlag
 Szymon Salamon
 Bartosz Słowik
-Magdalena the Unicorn
+Paweł Samuła
 
