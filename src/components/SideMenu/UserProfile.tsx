@@ -1,6 +1,6 @@
 import { UserIcon } from "@heroicons/react/24/solid";
 
-const SideMenuUser = () => {
+const UserProfile = () => {
   return (
     <div className="flex flex-row">
       <div className="flex items-center justify-center rounded-full bg-gray-200 p-3">
@@ -14,4 +14,4 @@ const SideMenuUser = () => {
   );
 };
 
-export default SideMenuUser;
+export default UserProfile;

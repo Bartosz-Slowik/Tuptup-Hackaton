@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   Icon: React.ElementType;
   text: string;
@@ -7,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-export default function searchBar({ Icon, text, callCack, className }: Props) {
+const SearchBar = ({ Icon, text, callCack, className }: Props) => {
   return (
     <div className={`w-full p-2.5 md:!block ${className ? className : ""}`}>
       <div className={`relative w-full`}>
@@ -23,4 +21,6 @@ export default function searchBar({ Icon, text, callCack, className }: Props) {
       </div>
     </div>
   );
-}
+};
+
+export default SearchBar;

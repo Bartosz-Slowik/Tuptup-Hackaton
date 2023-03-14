@@ -3,7 +3,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const SideMenuSection = ({ className, children }: Props) => {
+const MenuSection = ({ className, children }: Props) => {
   return (
     <div
       className={`flex w-full flex-col bg-white p-4 shadow-md ${
@@ -15,4 +15,4 @@ const SideMenuSection = ({ className, children }: Props) => {
   );
 };
 
-export default SideMenuSection;
+export default MenuSection;

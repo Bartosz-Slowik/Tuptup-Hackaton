@@ -3,7 +3,7 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 interface Props {
   onClick: () => void;
 }
-const SideMenuFixedIcon = ({ onClick }: Props) => {
+const FixedIcon = ({ onClick }: Props) => {
   return (
     <div
       className={`fixed top-5 right-5 flex cursor-pointer justify-center
@@ -15,4 +15,4 @@ const SideMenuFixedIcon = ({ onClick }: Props) => {
   );
 };
 
-export default SideMenuFixedIcon;
+export default FixedIcon;

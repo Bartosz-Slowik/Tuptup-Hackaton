@@ -8,7 +8,7 @@ interface Props {
   setFilter: (filter: "friends" | "events" | "all") => void;
 }
 
-const MenuFiltersRow = ({ className, filter, setFilter }: Props) => {
+const FiltersRow = ({ className, filter, setFilter }: Props) => {
   return (
     <div
       className={`flex flex-row space-x-2 p-2 ${className ? className : ""}`}
@@ -33,4 +33,4 @@ const MenuFiltersRow = ({ className, filter, setFilter }: Props) => {
   );
 };
 
-export default MenuFiltersRow;
+export default FiltersRow;

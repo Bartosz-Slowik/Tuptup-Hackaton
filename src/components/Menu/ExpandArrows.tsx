@@ -4,7 +4,7 @@ interface Props {
   direction: "up" | "down";
 }
 
-const MenuExpandArrows = ({ direction }: Props) => {
+const ExpandArrows = ({ direction }: Props) => {
   return (
     <div className="flex flex-row text-gray-500">
       {[...Array(5)].map((_, i) => {
@@ -21,4 +21,4 @@ const MenuExpandArrows = ({ direction }: Props) => {
   );
 };
 
-export default MenuExpandArrows;
+export default ExpandArrows;

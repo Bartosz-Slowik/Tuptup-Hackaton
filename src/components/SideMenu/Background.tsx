@@ -5,7 +5,7 @@ interface Props {
   onClick: () => void;
 }
 
-const SideMenuBackground = ({ active, onClick }: Props) => {
+const Background = ({ active, onClick }: Props) => {
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const SideMenuBackground = ({ active, onClick }: Props) => {
   );
 };
 
-export default SideMenuBackground;
+export default Background;

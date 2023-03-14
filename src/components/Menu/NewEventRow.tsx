@@ -8,11 +8,7 @@ interface Props {
   onUploadPhoto: () => void;
 }
 
-const MenuCreateEventRow = ({
-  className,
-  onTakePhoto,
-  onUploadPhoto,
-}: Props) => {
+const NewEventRow = ({ className, onTakePhoto, onUploadPhoto }: Props) => {
   return (
     <div
       className={`flex flex-row space-x-2 p-2 ${className ? className : ""}`}
@@ -33,4 +29,4 @@ const MenuCreateEventRow = ({
   );
 };
 
-export default MenuCreateEventRow;
+export default NewEventRow;

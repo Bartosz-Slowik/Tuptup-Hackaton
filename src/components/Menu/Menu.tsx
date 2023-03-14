@@ -3,10 +3,10 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./SearchBar";
 import places from "../places.json";
 import { EventsClass } from "../../utils/repo";
-import MenuExpandArrows from "./MenuExpandArrows";
+import ExpandArrows from "./ExpandArrows";
 import EventsList from "./EventsList/EventsList";
-import MenuFiltersRow from "./MenuFIltersRow";
-import MenuCreateEventRow from "./MenuCreateEventRow";
+import FiltersRow from "./FIltersRow";
+import NewEventRow from "./NewEventRow";
 
 const eventTypes = ["event"];
 const friendsTypes = ["sport", "party", "meeting"];
@@ -75,7 +75,7 @@ export default function Events({ showCreateEventPopup }: Props) {
         className="order-1 flex cursor-pointer flex-row justify-center md:hidden"
         onClick={() => setFullScreen(!fullScreen)}
       >
-        <MenuExpandArrows direction={fullScreen ? "down" : "up"} />
+        <ExpandArrows direction={fullScreen ? "down" : "up"} />
       </div>
 
       {fullScreen && (
@@ -89,13 +89,13 @@ export default function Events({ showCreateEventPopup }: Props) {
         />
       )}
 
-      <MenuCreateEventRow
+      <NewEventRow
         className={`${fullScreen && "!order-5"} order-3 md:!order-5`}
         onTakePhoto={() => {}}
         onUploadPhoto={() => {}}
       />
 
-      <MenuFiltersRow
+      <FiltersRow
         className={`${
           fullScreen && "!order-3"
         } order-4 !pb-2 !pt-0 md:!order-3`}
