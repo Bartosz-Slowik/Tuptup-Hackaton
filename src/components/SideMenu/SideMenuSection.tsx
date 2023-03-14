@@ -6,7 +6,7 @@ interface Props {
 const SideMenuSection = ({ className, children }: Props) => {
   return (
     <div
-      className={`p-4 w-full flex flex-col bg-white shadow-md ${
+      className={`flex w-full flex-col bg-white p-4 shadow-md ${
         className ? className : ""
       }`}
     >

@@ -6,8 +6,8 @@ interface Props {
 const SideMenuFixedIcon = ({ onClick }: Props) => {
   return (
     <div
-      className={`fixed cursor-pointer rounded-full top-5 right-5 bg-violet-900
-      text-white p-2 flex text-center justify-center shadow-lg`}
+      className={`fixed top-5 right-5 flex cursor-pointer justify-center
+      rounded-full bg-violet-900 p-2 text-center text-white shadow-lg`}
       onClick={() => onClick && onClick()}
     >
       <Bars3Icon className="h-8 w-8 " />

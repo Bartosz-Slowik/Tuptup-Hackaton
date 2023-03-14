@@ -7,7 +7,7 @@ interface Props {
 const Button = ({ className, Icon, text, onClick }: Props) => {
   return (
     <div
-      className={`flex flex-row cursor-pointer p-2 ${
+      className={`flex cursor-pointer flex-row p-2 ${
         className ? className : ""
       }`}
       onClick={() => onClick && onClick()}

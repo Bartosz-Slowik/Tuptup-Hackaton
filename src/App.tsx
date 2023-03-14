@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="w-screen flex flex-col z-5">
+    <div className="z-5 flex w-screen flex-col">
       <Map />
       <SideMenu />
       <Events showCreateEventPopup={showCreateEventPopup} />
