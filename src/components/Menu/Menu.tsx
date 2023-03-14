@@ -78,16 +78,14 @@ export default function Events({ showCreateEventPopup }: Props) {
         <ExpandArrows direction={fullScreen ? "down" : "up"} />
       </div>
 
-      {fullScreen && (
-        <SearchBar
-          className="order-2"
-          Icon={MagnifyingGlassIcon}
-          text="Search"
-          callCack={(input) => {
-            setSearch(input);
-          }}
-        />
-      )}
+      <SearchBar
+        className={`order-2 md:!block ${!fullScreen && "hidden"}`}
+        Icon={MagnifyingGlassIcon}
+        text="Search"
+        callCack={(input) => {
+          setSearch(input);
+        }}
+      />
 
       <NewEventRow
         className={`${fullScreen && "!order-5"} order-3 md:!order-5`}

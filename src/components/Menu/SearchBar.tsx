@@ -7,7 +7,7 @@ interface Props {
 
 const SearchBar = ({ Icon, text, callCack, className }: Props) => {
   return (
-    <div className={`w-full p-2.5 md:!block ${className ? className : ""}`}>
+    <div className={`w-full p-2 ${className ? className : ""}`}>
       <div className={`relative w-full`}>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
           {Icon && <Icon className="h-6 w-6 " />}
