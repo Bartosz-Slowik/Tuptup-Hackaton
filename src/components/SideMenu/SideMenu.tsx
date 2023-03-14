@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SideMenuUserProfile from "./SideMenuUserProfile";
 import {
-  Bars3Icon,
   UserGroupIcon,
   EnvelopeIcon,
   InformationCircleIcon,
