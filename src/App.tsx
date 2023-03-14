@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navi from "./components/Navi/navi";
+import SideMenu from "./components/SideMenu/SideMenu";
 import Map from "./components/Map/Map";
-import Events from "./components/events/events";
+import Events from "./components/Menu/Menu";
 import CreateEvent from "./components/createEvent";
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
   };
 
   return (
-    <div className="w-screen flex flex-col z-5">
+    <div className="z-5 flex w-screen flex-col">
       <Map />
-      <Navi />
+      <SideMenu />
       <Events showCreateEventPopup={showCreateEventPopup} />
       {createEventPopupOpen && (
         <CreateEvent hideCreateEventPopup={hideCreateEventPopup} />
