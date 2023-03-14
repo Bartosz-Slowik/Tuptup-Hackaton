@@ -67,9 +67,10 @@ export default function Events({ showCreateEventPopup }: Props) {
     <div
       className={`${
         fullScreen && " !bottom-0 !z-30 !rounded-none"
-      } shadow-3xl fixed -bottom-[65vh] left-0 right-0 z-10 flex h-full
-        flex-col rounded-t-3xl bg-white p-2 transition-all duration-500
-        md:top-0 md:right-auto md:h-full md:w-[22rem] md:rounded-none md:transition-none`}
+      } fixed -bottom-[65vh] left-0 right-0 z-10 flex h-full
+        flex-col rounded-t-3xl bg-white p-2 shadow-2xl transition-all
+        duration-500 md:top-0 md:right-auto md:h-full md:w-[22rem] md:rounded-none
+        md:transition-none`}
     >
       <div
         className="order-1 flex cursor-pointer flex-row justify-center md:hidden"
