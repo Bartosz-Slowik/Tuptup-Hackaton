@@ -8,17 +8,19 @@ import EventsList from "./EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
 
-const eventTypes = ["event"];
-const friendsTypes = ["sport", "party", "meeting"];
+import { Event } from "../../types/types";
 
-const filterEventsByType = (types: string[], array: any) => {
-  return array.filter((item: any) => {
-    return types.includes(item.properties.type);
+const eventTypes = ["event"];
+const friendsTypes = ["sport", "party"];
+
+const filterEventsByType = (types: string[], array: Array<Event>) => {
+  return array.filter((item: Event) => {
+    return types.includes(item.type);
   });
 };
-const filteredEventsByName = (name: string, array: any) => {
-  return array.filter((item: any) => {
-    return item.properties.title.toLowerCase().includes(name.toLowerCase());
+const filteredEventsByName = (name: string, array: Array<Event>) => {
+  return array.filter((item: Event) => {
+    return item.title.toLowerCase().includes(name.toLowerCase());
   });
 };
 
@@ -30,23 +32,25 @@ export default function Events({ showCreateEventPopup }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
   const [search, setSearch] = useState("");
-  const [events, setEvents] = useState<EventsClass>(new EventsClass());
+  //const [events, setEvents] = useState<EventsClass>(new EventsClass());
 
-  const setFocus = (id: Number) => {
-    const el1 = document.querySelector(`[data-id="${id}"]`);
+  // const setFocus = (id: Number) => {
+  //   const el1 = document.querySelector(`[data-id="${id}"]`);
 
-    const clk = new MouseEvent("click", {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    });
+  //   const clk = new MouseEvent("click", {
+  //     view: window,
+  //     bubbles: true,
+  //     cancelable: true,
+  //   });
 
-    el1?.dispatchEvent(clk);
+  //   el1?.dispatchEvent(clk);
 
-    console.log(el1);
-  };
+  //   console.log(el1);
+  // };
 
-  let filteredEvents = filteredEventsByName(search, places.features);
+  const allEvents: Array<Event> = places.places;
+
+  let filteredEvents = filteredEventsByName(search, allEvents);
   switch (filter) {
     case "friends":
       filteredEvents = filterEventsByType(friendsTypes, filteredEvents);
@@ -58,10 +62,10 @@ export default function Events({ showCreateEventPopup }: Props) {
       break;
   }
 
-  events.init();
-  filteredEvents.forEach((event: any) => {
-    events.show(event.properties.id);
-  });
+  //events.init();
+  // filteredEvents.forEach((event: any) => {
+  //   events.show(event.properties.id);
+  // });
 
   return (
     <div
@@ -105,7 +109,7 @@ export default function Events({ showCreateEventPopup }: Props) {
       <EventsList
         className={`${fullScreen && "!order-4"} order-5  md:!order-4`}
         onClick={(id: Number) => {
-          setFocus(id);
+          //setFocus(id);
           setFullScreen(false);
         }}
         events={filteredEvents}

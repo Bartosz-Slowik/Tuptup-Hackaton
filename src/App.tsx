@@ -5,7 +5,12 @@ import Map from "./components/Map/Map";
 import Events from "./components/Menu/Menu";
 import CreateEvent from "./components/createEvent";
 
+import geoJson from "./components/places.json";
+import { Event } from "./types/types";
+
 function App() {
+  const [events, setEvents] = useState(geoJson.places as Array<Event>);
+
   const [createEventPopupOpen, setCreateEventPopupOpen] = useState(false);
 
   const showCreateEventPopup = () => {
@@ -15,9 +20,11 @@ function App() {
     setCreateEventPopupOpen(false);
   };
 
+  //
+
   return (
     <div className="z-5 flex w-screen flex-col">
-      <Map />
+      <Map events={events} />
       <SideMenu />
       <Events showCreateEventPopup={showCreateEventPopup} />
       {createEventPopupOpen && (

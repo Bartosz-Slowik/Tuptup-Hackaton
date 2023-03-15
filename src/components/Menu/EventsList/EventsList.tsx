@@ -1,8 +1,10 @@
-import Event from "./Event";
+import ListEvent from "./EventsListObject";
+
+import { Event } from "../../../types/types";
 
 interface Props {
   onClick: (id: Number) => void;
-  events: any;
+  events: Array<Event>;
   className?: string;
 }
 
@@ -11,24 +13,15 @@ const EventsList = ({ onClick, events, className }: Props) => {
     <div
       className={`flex flex-grow flex-col p-2 ${className ? className : ""}`}
     >
-      {events.map(
-        (feature: {
-          geometry: { coordinates: [] };
-          properties: {
-            type: string;
-            id: any;
-            title: string;
-          };
-        }) => {
-          return (
-            <Event
-              key={feature.properties.id}
-              eventObject={feature}
-              onClick={(id) => onClick(id)}
-            />
-          );
-        }
-      )}
+      {events.map((event) => {
+        return (
+          <ListEvent
+            key={event.id}
+            event={event}
+            onClick={(id) => onClick(id)}
+          />
+        );
+      })}
     </div>
   );
 };
