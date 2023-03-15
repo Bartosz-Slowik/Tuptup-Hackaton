@@ -7,10 +7,7 @@
       "description": "24h of coding with free pizza and drinks",
       "type": "event",
       "image": "kosciuszkon.jpg",
-      "coordinates": {
-        "lat": 50.08399993925693,
-        "lng": 19.99629671664809
-      }
+      "coordinates": [19.99629671664809, 50.08399993925693]
     },
     {
       "id": 1,
@@ -19,10 +16,7 @@
       "description": "Don't play D4",
       "type": "event",
       "image": "szachy.jpg",
-      "coordinates": {
-        "lat": 50.071942298900524,
-        "lng": 19.94173898739982
-      }
+      "coordinates": [19.94173898739982, 50.071942298900524]
     },
     {
       "id": 3,
@@ -31,10 +25,7 @@
       "description": "Let's play match like Michael Jordan",
       "type": "sport",
       "image": "koszykowka.jpg",
-      "coordinates": {
-        "lat": 50.06115043929323,
-        "lng": 19.9142067426134025
-      }
+      "coordinates": [19.9142067426134025, 50.06115043929323]
     },
     {
       "id": 4,
@@ -43,10 +34,7 @@
       "description": "Talking with eating",
       "type": "sport",
       "image": "miasto.jpg",
-      "coordinates": {
-        "lat": 50.06301434728838,
-        "lng": 19.941015236678783
-      }
+      "coordinates": [19.941015236678783, 50.06301434728838]
     },
     {
       "id": 5,
@@ -55,10 +43,7 @@
       "description": "Buy some pizza and drink",
       "type": "party",
       "image": "domowka.jpg",
-      "coordinates": {
-        "lat": 50.081457939328864,
-        "lng": 19.971400758179364
-      }
+      "coordinates": [19.971400758179364, 50.081457939328864]
     },
     {
       "id": 6,
@@ -67,10 +52,7 @@
       "description": "Let's make some exercise from counting method",
       "type": "party",
       "image": "MO.jpg",
-      "coordinates": {
-        "lat": 50.07584385679228,
-        "lng": 19.9087720049917
-      }
+      "coordinates": [19.9087720049917, 50.07584385679228]
     },
     {
       "id": 7,
@@ -79,10 +61,7 @@
       "description": "Chilling and vibing next to Wisla",
       "type": "party",
       "image": "rzeka.jpg",
-      "coordinates": {
-        "lat": 50.053455420944545,
-        "lng": 19.968967706870806
-      }
+      "coordinates": [19.968967706870806, 50.053455420944545]
     },
     {
       "id": 8,
@@ -91,10 +70,7 @@
       "description": "Need 2 ppl to play with us",
       "type": "sport",
       "image": "Kosz.jpg",
-      "coordinates": {
-        "lat": 50.086139570390586,
-        "lng": 19.995934765275873
-      }
+      "coordinates": [19.995934765275873, 50.086139570390586]
     },
     {
       "id": 9,
@@ -103,10 +79,7 @@
       "description": "Can someone help me with Algebra?",
       "type": "sport",
       "image": "algebra.jpg",
-      "coordinates": {
-        "lat": 50.086144820067254,
-        "lng": 19.997880308725023
-      }
+      "coordinates": [19.997880308725023, 50.086144820067254]
     },
     {
       "id": 10,
@@ -115,10 +88,7 @@
       "description": "Need a 4th person to play some",
       "type": "event",
       "image": "poker.jpeg",
-      "coordinates": {
-        "lat": 50.08522376435156,
-        "lng": 20.001129974664742
-      }
+      "coordinates": [20.001129974664742, 50.08522376435156]
     }
   ]
 }

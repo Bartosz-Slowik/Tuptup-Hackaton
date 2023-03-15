@@ -10,7 +10,7 @@ const eventToMapBoxEvent = (event: Event): MapBoxEvent => {
       description,
     },
     geometry: {
-      coordinates: [coordinates.lng, coordinates.lat],
+      coordinates,
       type: "Point",
     },
   };

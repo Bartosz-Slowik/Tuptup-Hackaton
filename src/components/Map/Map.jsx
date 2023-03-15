@@ -9,7 +9,7 @@ import Popup from "./Popup";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = ({ events }) => {
+const Map = ({ events, focusedEvent, setFocusedEvent }) => {
   const [geoObjects, setGeoObjects] = useState([]);
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -17,32 +17,34 @@ const Map = ({ events }) => {
   const [lat, setLat] = useState(50.04);
   const [zoom, setZoom] = useState(9);
 
-  const flyTo = (lng, lat, offsetY) => {
+  const flyTo = (event) => {
     map.current.flyTo({
-      center: [lng, lat],
-      offset: [0, offsetY],
+      center: [event.coordinates[0], event.coordinates[1]],
+      offset: [0, 140],
     });
   };
 
-  const createMarkerPopupDOMElements = (event) => {
-    const popupEl = document.createElement("div");
-    const popupRoot = ReactDOM.createRoot(popupEl);
-    popupRoot.render(
-      <Popup
-        title={event.title}
-        description={event.description}
-        image={event.image}
-        friends={event.participants}
-      />
-    );
+  const hideAllPopups = () => {
+    if (!geoObjects) return;
+    geoObjects.forEach((geoObject) => {
+      if (geoObject?.mapBoxMarker?.getPopup().isOpen()) {
+        geoObject.mapBoxMarker.togglePopup();
+      }
+    });
+  };
 
-    const markerEl = document.createElement("div");
-    const markerRoot = ReactDOM.createRoot(markerEl);
-    markerRoot.render(
-      <Marker event={event} popupEl={popupEl} mapFlyTo={flyTo} />
-    );
+  const removeMarkers = () => {
+    if (!geoObjects) return;
+    geoObjects.forEach((geoObject) => {
+      geoObject.mapBoxMarker.remove();
+    });
+  };
 
-    return [markerEl, popupEl];
+  const getGeoObject = (event) => {
+    const geoObject = geoObjects.find((geoObject) => {
+      return geoObject.id === event.id;
+    });
+    return geoObject;
   };
 
   useEffect(() => {
@@ -56,24 +58,61 @@ const Map = ({ events }) => {
   });
 
   useEffect(() => {
+    const createMarkerPopupDOMElements = (event) => {
+      const popupEl = document.createElement("div");
+      const popupRoot = ReactDOM.createRoot(popupEl);
+      popupRoot.render(
+        <Popup
+          title={event.title}
+          description={event.description}
+          image={event.image}
+          friends={event.participants}
+        />
+      );
+
+      const markerEl = document.createElement("div");
+      const markerRoot = ReactDOM.createRoot(markerEl);
+      markerRoot.render(
+        <Marker
+          event={event}
+          onClick={() => {
+            setFocusedEvent(event);
+          }}
+        />
+      );
+      return [markerEl, popupEl];
+    };
+
     const newGeoObjects = events.map((event) => {
-      console.log(event);
-
-      const feature = typeConverter(event);
-
-      const [el, el2] = createMarkerPopupDOMElements(event);
-
-      const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(el2);
-
-      new mapboxgl.Marker(el)
-        .setLngLat(feature.geometry.coordinates)
+      const [markerEl, popupEl] = createMarkerPopupDOMElements(event);
+      const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupEl);
+      const marker = new mapboxgl.Marker(markerEl)
+        .setLngLat([event.coordinates[0], event.coordinates[1]])
         .setPopup(popup)
         .addTo(map.current);
 
-      return feature;
+      return { id: event.id, mapBoxMarker: marker };
     });
+
+    removeMarkers();
     setGeoObjects(newGeoObjects);
   }, [events]);
+
+  useEffect(() => {
+    hideAllPopups();
+    if (!focusedEvent) return;
+    const geoObject = getGeoObject(focusedEvent);
+    flyTo(focusedEvent);
+
+    const timeout = setTimeout(() => {
+      if (!geoObject?.mapBoxMarker?.getPopup().isOpen()) {
+        geoObject.mapBoxMarker.togglePopup();
+        console.log(geoObject);
+      }
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, [focusedEvent]);
 
   useEffect(() => {
     if (!map.current) return; // wait for map to initialize

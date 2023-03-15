@@ -1,23 +1,16 @@
-import { useEffect, useRef, useState } from "react";
 import DefaultIcon from "../../assets/svg/beer.svg";
 import { Event } from "../../types/types";
 
 interface Props {
   event: Event;
-  popupEl: HTMLDivElement;
-  mapFlyTo: (lng: number, lat: number, offsetY: number) => void;
+  onClick: () => void;
 }
 
-const Marker = ({ event, popupEl, mapFlyTo }: Props) => {
+const Marker = ({ event, onClick }: Props) => {
   return (
     <div
       onClick={() => {
-        mapFlyTo(
-          event.coordinates.lng,
-          event.coordinates.lat,
-          Math.round(popupEl.clientHeight / 2)
-        );
-        console.log(popupEl.clientHeight);
+        onClick();
       }}
       className="cursor-pointer"
     >

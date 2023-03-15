@@ -3,17 +3,12 @@ interface User {
   name: string;
 }
 
-interface Coordinates {
-  lat: number;
-  lng: number;
-}
-
 interface Event {
   id: number;
   title: string;
   description: string;
   participants: Array<User>;
-  coordinates: Coordinates;
+  coordinates: Array<number>;
   type: string;
   image: string;
 }
@@ -26,9 +21,9 @@ interface MapBoxEvent {
     description: string;
   };
   geometry: {
-    coordinates: [number, number];
+    coordinates: Array<number>;
     type: "Point";
   };
 }
 
-export type { User, Event, Coordinates, MapBoxEvent };
+export type { User, Event, MapBoxEvent };

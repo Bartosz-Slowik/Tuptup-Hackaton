@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./SearchBar";
-import places from "../places.json";
-import { EventsClass } from "../../utils/repo";
 import ExpandArrows from "./ExpandArrows";
 import EventsList from "./EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
@@ -26,31 +24,22 @@ const filteredEventsByName = (name: string, array: Array<Event>) => {
 
 interface Props {
   showCreateEventPopup: () => void;
+  events: Array<Event>;
+  focusedEvent: Event | null;
+  setFocusedEvent: (event: Event | null) => void;
 }
 
-export default function Events({ showCreateEventPopup }: Props) {
+export default function Events({
+  showCreateEventPopup,
+  events,
+  focusedEvent,
+  setFocusedEvent,
+}: Props) {
   const [fullScreen, setFullScreen] = useState(false);
   const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
   const [search, setSearch] = useState("");
-  //const [events, setEvents] = useState<EventsClass>(new EventsClass());
 
-  // const setFocus = (id: Number) => {
-  //   const el1 = document.querySelector(`[data-id="${id}"]`);
-
-  //   const clk = new MouseEvent("click", {
-  //     view: window,
-  //     bubbles: true,
-  //     cancelable: true,
-  //   });
-
-  //   el1?.dispatchEvent(clk);
-
-  //   console.log(el1);
-  // };
-
-  const allEvents: Array<Event> = places.places;
-
-  let filteredEvents = filteredEventsByName(search, allEvents);
+  let filteredEvents = filteredEventsByName(search, events);
   switch (filter) {
     case "friends":
       filteredEvents = filterEventsByType(friendsTypes, filteredEvents);
@@ -61,11 +50,6 @@ export default function Events({ showCreateEventPopup }: Props) {
     default:
       break;
   }
-
-  //events.init();
-  // filteredEvents.forEach((event: any) => {
-  //   events.show(event.properties.id);
-  // });
 
   return (
     <div
@@ -109,7 +93,8 @@ export default function Events({ showCreateEventPopup }: Props) {
       <EventsList
         className={`${fullScreen && "!order-4"} order-5  md:!order-4`}
         onClick={(id: Number) => {
-          //setFocus(id);
+          setFocusedEvent(events.find((event) => event.id === id) || null);
+
           setFullScreen(false);
         }}
         events={filteredEvents}
