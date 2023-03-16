@@ -1,23 +1,34 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import * as ReactDOM from "react-dom/client";
-import typeConverter from "../../utils/typeConverter";
 import Marker from "./Marker";
 import Popup from "./Popup";
+import { Event } from "../../types/types";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = ({ events, focusedEvent, setFocusedEvent }) => {
-  const [geoObjects, setGeoObjects] = useState([]);
-  const mapContainer = useRef(null);
-  const map = useRef(null);
+interface Props {
+  events: Array<Event>;
+  focusedEvent: Event | null;
+  setFocusedEvent: (event: Event | null) => void;
+}
+interface MapMarker {
+  id: number;
+  mapBoxMarker: mapboxgl.Marker;
+}
+
+const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
+  const [markers, setMarkers] = useState<Array<MapMarker>>([]);
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<mapboxgl.Map>();
   const [lng, setLng] = useState(19.94);
   const [lat, setLat] = useState(50.04);
   const [zoom, setZoom] = useState(9);
 
-  const flyTo = (event) => {
+  const flyTo = (event: Event) => {
+    if (!map.current) return;
     map.current.flyTo({
       center: [event.coordinates[0], event.coordinates[1]],
       offset: [0, 140],
@@ -25,23 +36,23 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
   };
 
   const hideAllPopups = () => {
-    if (!geoObjects) return;
-    geoObjects.forEach((geoObject) => {
-      if (geoObject?.mapBoxMarker?.getPopup().isOpen()) {
-        geoObject.mapBoxMarker.togglePopup();
+    if (!markers) return;
+    markers.forEach((marker) => {
+      if (marker.mapBoxMarker?.getPopup().isOpen()) {
+        marker.mapBoxMarker.togglePopup();
       }
     });
   };
 
   const removeMarkers = () => {
-    if (!geoObjects) return;
-    geoObjects.forEach((geoObject) => {
+    if (!markers) return;
+    markers.forEach((geoObject) => {
       geoObject.mapBoxMarker.remove();
     });
   };
 
-  const getGeoObject = (event) => {
-    const geoObject = geoObjects.find((geoObject) => {
+  const getGeoObject = (event: Event) => {
+    const geoObject = markers.find((geoObject) => {
       return geoObject.id === event.id;
     });
     return geoObject;
@@ -49,6 +60,7 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
+    if (!mapContainer.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
@@ -58,7 +70,7 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
   });
 
   useEffect(() => {
-    const createMarkerPopupDOMElements = (event) => {
+    const createMarkerPopupDOMElements = (event: Event) => {
       const popupEl = document.createElement("div");
       const popupRoot = ReactDOM.createRoot(popupEl);
       popupRoot.render(
@@ -83,31 +95,31 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
       return [markerEl, popupEl];
     };
 
-    const newGeoObjects = events.map((event) => {
+    const newMarkers = events.map((event) => {
       const [markerEl, popupEl] = createMarkerPopupDOMElements(event);
       const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupEl);
       const marker = new mapboxgl.Marker(markerEl)
         .setLngLat([event.coordinates[0], event.coordinates[1]])
         .setPopup(popup)
+        // @ts-ignore
         .addTo(map.current);
-
-      return { id: event.id, mapBoxMarker: marker };
+      return { id: event.id, mapBoxMarker: marker } as MapMarker;
     });
 
     removeMarkers();
-    setGeoObjects(newGeoObjects);
+    setMarkers(newMarkers);
   }, [events]);
 
   useEffect(() => {
     hideAllPopups();
     if (!focusedEvent) return;
     const geoObject = getGeoObject(focusedEvent);
+    if (!geoObject) return;
     flyTo(focusedEvent);
 
     const timeout = setTimeout(() => {
-      if (!geoObject?.mapBoxMarker?.getPopup().isOpen()) {
+      if (!geoObject.mapBoxMarker.getPopup().isOpen()) {
         geoObject.mapBoxMarker.togglePopup();
-        console.log(geoObject);
       }
     }, 100);
 
@@ -127,9 +139,10 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
     map.current.addControl(geolocate);
 
     map.current.on("move", () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
+      if (!map.current) return;
+      setLng(map.current.getCenter().lng);
+      setLat(map.current.getCenter().lat);
+      setZoom(map.current.getZoom());
     });
 
     map.current.on("load", function () {
