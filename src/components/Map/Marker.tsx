@@ -1,5 +1,5 @@
-import DefaultIcon from "../../assets/svg/beer.svg";
 import { Event } from "../../types/types";
+import MapIcon from "./MapIcon";
 
 interface Props {
   event: Event;
@@ -8,13 +8,8 @@ interface Props {
 
 const Marker = ({ event, onClick }: Props) => {
   return (
-    <div
-      onClick={() => {
-        onClick();
-      }}
-      className="cursor-pointer"
-    >
-      <img src={DefaultIcon} alt="" className="h-8 w-8" />
+    <div onClick={() => onClick()} className="cursor-pointer">
+      <MapIcon type={event.type} className="h-8 w-8" />
     </div>
   );
 };

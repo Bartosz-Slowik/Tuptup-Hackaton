@@ -1,4 +1,4 @@
-import EventIcon from "../../EventIcon";
+import EventIcon from "./EventIcon";
 import { Event } from "../../../types/types";
 
 interface Props {
@@ -6,13 +6,13 @@ interface Props {
   onClick: (id: Number) => void;
 }
 
-export default function ListObject({ event, onClick }: Props) {
+export default function ListEvent({ event, onClick }: Props) {
   return (
     <button
       className={`flex cursor-pointer flex-row p-2`}
       onClick={() => onClick(event.id)}
     >
-      <EventIcon event={event.type} size="small" className="h-6 w-6" />
+      <EventIcon type={event.type} className="h-6 w-6" />
       <div className="ml-4">{event.title}</div>
     </button>
   );

@@ -51,15 +51,29 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
     });
   };
 
-  const getGeoObject = (event: Event) => {
+  const getMarker = (event: Event) => {
     const geoObject = markers.find((geoObject) => {
       return geoObject.id === event.id;
     });
     return geoObject;
   };
 
+  const createMarkerPopupDOMElements = (event: Event) => {
+    const popupEl = document.createElement("div");
+    const popupRoot = ReactDOM.createRoot(popupEl);
+    popupRoot.render(<Popup event={event} />);
+
+    const markerEl = document.createElement("div");
+    const markerRoot = ReactDOM.createRoot(markerEl);
+    markerRoot.render(
+      <Marker event={event} onClick={() => setFocusedEvent(event)} />
+    );
+    return [markerEl, popupEl];
+  };
+
+  // initialize map when container is ref is available
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) return;
     if (!mapContainer.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -68,33 +82,32 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
       zoom: zoom,
     });
   });
-
+  // initialize map and focus on user location on first render
   useEffect(() => {
-    const createMarkerPopupDOMElements = (event: Event) => {
-      const popupEl = document.createElement("div");
-      const popupRoot = ReactDOM.createRoot(popupEl);
-      popupRoot.render(
-        <Popup
-          title={event.title}
-          description={event.description}
-          image={event.image}
-          friends={event.participants}
-        />
-      );
+    if (!map.current) return;
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      showAccuracyCircle: false,
+      trackUserLocation: true,
+    });
+    map.current.addControl(geolocate);
+    map.current.on("move", () => {
+      if (!map.current) return;
+      setLng(map.current.getCenter().lng);
+      setLat(map.current.getCenter().lat);
+      setZoom(map.current.getZoom());
+    });
+    map.current.on("load", function () {
+      //Focus on user location
+      geolocate.trigger();
+    });
+  });
 
-      const markerEl = document.createElement("div");
-      const markerRoot = ReactDOM.createRoot(markerEl);
-      markerRoot.render(
-        <Marker
-          event={event}
-          onClick={() => {
-            setFocusedEvent(event);
-          }}
-        />
-      );
-      return [markerEl, popupEl];
-    };
-
+  // add markers to map every time events change
+  useEffect(() => {
+    removeMarkers();
     const newMarkers = events.map((event) => {
       const [markerEl, popupEl] = createMarkerPopupDOMElements(event);
       const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupEl);
@@ -105,51 +118,23 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
         .addTo(map.current);
       return { id: event.id, mapBoxMarker: marker } as MapMarker;
     });
-
-    removeMarkers();
     setMarkers(newMarkers);
   }, [events]);
 
+  // focus event on map when event is clicked in list view or when event is clicked on map
   useEffect(() => {
     hideAllPopups();
     if (!focusedEvent) return;
-    const geoObject = getGeoObject(focusedEvent);
+    const geoObject = getMarker(focusedEvent);
     if (!geoObject) return;
     flyTo(focusedEvent);
-
     const timeout = setTimeout(() => {
       if (!geoObject.mapBoxMarker.getPopup().isOpen()) {
         geoObject.mapBoxMarker.togglePopup();
       }
     }, 100);
-
     return () => clearTimeout(timeout);
   }, [focusedEvent]);
-
-  useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
-
-    const geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      showAccuracyCircle: false,
-      trackUserLocation: true,
-    });
-    map.current.addControl(geolocate);
-
-    map.current.on("move", () => {
-      if (!map.current) return;
-      setLng(map.current.getCenter().lng);
-      setLat(map.current.getCenter().lat);
-      setZoom(map.current.getZoom());
-    });
-
-    map.current.on("load", function () {
-      //Focus on user location
-      geolocate.trigger();
-    });
-  });
 
   return <div className="map-container" ref={mapContainer} />;
 };

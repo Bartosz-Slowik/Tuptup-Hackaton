@@ -1,16 +1,16 @@
 import { User } from "../../types/types";
+import { Event } from "../../types/types";
+import MapIcon from "./MapIcon";
 
 interface Props {
-  title: string;
-  description: string;
-  image: string;
-  friends: Array<User>;
+  event: Event;
 }
 
-const Popup = ({ title, description, image, friends }: Props) => {
+const Popup = ({ event }: Props) => {
+  const { title, description, image, participants, type } = event;
   return (
-    <div className="flex w-[12rem] flex-col  rounded-xl bg-white p-1 shadow-2xl ">
-      {" "}
+    <div className="relative flex w-[12rem] flex-col rounded-xl bg-white p-1 shadow-2xl">
+      <MapIcon type={type} className=" absolute -top-6 -left-6 h-14 w-14" />
       <div className="flex items-center justify-center px-2 pt-1 text-center text-lg font-bold">
         {title}
       </div>
@@ -26,8 +26,8 @@ const Popup = ({ title, description, image, friends }: Props) => {
       <div className="mb-2 flex flex-col px-2 text-center text-xs">
         <div className="font-bold ">Your friends are here:</div>
         <div className="text-center text-blue-400">
-          {friends.map((friend) => {
-            return <>{friend.name}</>;
+          {participants.map((participant) => {
+            return <>{participant.name}</>;
           })}
         </div>
       </div>

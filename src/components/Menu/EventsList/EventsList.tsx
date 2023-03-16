@@ -1,4 +1,4 @@
-import ListEvent from "./EventsListObject";
+import ListEvent from "./ListEvent";
 
 import { Event } from "../../../types/types";
 
