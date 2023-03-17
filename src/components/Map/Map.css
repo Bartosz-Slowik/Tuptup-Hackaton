@@ -2,14 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-.hiddenEl {
+.hiddenEl{
   display: none;
 }
 .map-container {
   position: absolute;
-  @apply top-0 left-0 right-0 bottom-[30vh] md:left-[22rem] md:bottom-0;
+  @apply md:left-[22rem] md:bottom-0 top-0 left-0 right-0 bottom-[30vh];
 }
-
+.markerEvent {
+  background-image: url('../../../public/pin.svg');
+  background-size: cover;
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+}
+.markerParty {
+  background-image: url('../../../public/beer.svg');
+  background-size: cover;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+.markerSport{
+  background-image: url('../../../public/chop.svg');
+  background-size: cover;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
 .sidebarStyle {
   display: inline-block;
   position: absolute;
@@ -37,19 +57,19 @@ a.mapboxgl-ctrl-logo {
   width: 0;
   height: 0;
 }
-.noh3 {
+.noh3{
   text-align: center;
   font-weight: bold;
   font-size: 1.3em;
 }
-.quest {
+.quest{
   text-align: center;
 }
-.acpt {
+.acpt{
   width: 50%;
   height: auto;
 }
-.center-ob {
+.center-ob{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,11 +82,9 @@ a.mapboxgl-ctrl-logo {
   outline: 0;
   border: 0;
   cursor: pointer;
-  will-change: box-shadow, transform;
-  background: radial-gradient(100% 100% at 100% 0%, #7bb969 0%, #4a9764 100%);
-  box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%),
-    0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%),
-    inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #7BB969 0%, #4A9764 100% );
+  box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
   border-radius: 0.3em;
   color: #fff;
   height: 2em;
@@ -75,8 +93,7 @@ a.mapboxgl-ctrl-logo {
 }
 
 .acpt:hover {
-  box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%),
-    0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
+  box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
   transform: translateY(-0.1em);
 }
 
@@ -84,23 +101,23 @@ a.mapboxgl-ctrl-logo {
   box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
   transform: translateY(0em);
 }
-.mapboxgl-popup-close-button {
+.mapboxgl-popup-close-button{
   font-size: 0;
 }
-.mapboxgl-popup-content {
-  padding: 0 !important;
-  background-color: transparent !important;
+.mapboxgl-popup-content{
+  padding: 0!important;
+  background-color: transparent!important;
 }
-.nomapboxgl-popup-content > img {
+.nomapboxgl-popup-content>img{
   margin-top: 1em;
   height: 14em;
   width: auto;
 }
-h2 {
-  color: #ffbe46;
+h2{
+  color:#FFBE46;
   text-align: center;
   font-size: 1.2em;
 }
-p {
+p{
   text-align: center;
 }
