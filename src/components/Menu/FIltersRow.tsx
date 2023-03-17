@@ -4,8 +4,8 @@ import BigButton from "../UI/BigButton";
 
 interface Props {
   className?: string;
-  filter: "friends" | "events" | "all";
-  setFilter: (filter: "friends" | "events" | "all") => void;
+  filter: "friendsActivity" | "publicEvents" | "all";
+  setFilter: (filter: "friendsActivity" | "publicEvents" | "all") => void;
 }
 
 const FiltersRow = ({ className, filter, setFilter }: Props) => {
@@ -15,19 +15,23 @@ const FiltersRow = ({ className, filter, setFilter }: Props) => {
     >
       <BigButton
         className={`${
-          filter === "friends" && "!bg-[#007EFF]"
+          filter === "friendsActivity" && "!bg-[#007EFF]"
         } hover:bg-[#00B1D9]`}
         Icon={MdEmojiPeople}
         text="Friends"
-        onClick={() => setFilter(filter === "friends" ? "all" : "friends")}
+        onClick={() =>
+          setFilter(filter === "friendsActivity" ? "all" : "friendsActivity")
+        }
       />
       <BigButton
         className={`${
-          filter === "events" && "!bg-[#007EFF]"
+          filter === "publicEvents" && "!bg-[#007EFF]"
         } hover:bg-[#00B1D9]`}
         Icon={StarIcon}
         text="Events"
-        onClick={() => setFilter(filter === "events" ? "all" : "events")}
+        onClick={() =>
+          setFilter(filter === "publicEvents" ? "all" : "publicEvents")
+        }
       />
     </div>
   );
