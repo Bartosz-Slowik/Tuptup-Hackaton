@@ -17,15 +17,14 @@ interface Props {
 interface MapMarker {
   id: number;
   mapBoxMarker: mapboxgl.Marker;
+  markerRoot: ReactDOM.Root;
+  popupRoot: ReactDOM.Root;
 }
 
 const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
   const [markers, setMarkers] = useState<Array<MapMarker>>([]);
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map>();
-  const [lng, setLng] = useState(19.94);
-  const [lat, setLat] = useState(50.04);
-  const [zoom, setZoom] = useState(9);
 
   const flyTo = (event: Event) => {
     if (!map.current) return;
@@ -46,8 +45,18 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
 
   const removeMarkers = () => {
     if (!markers) return;
-    markers.forEach((geoObject) => {
-      geoObject.mapBoxMarker.remove();
+    markers.forEach((marker) => {
+      const popup = marker.mapBoxMarker.getPopup();
+      const popupEl = popup.getElement();
+      const markerEl = marker.mapBoxMarker.getElement();
+
+      marker.markerRoot.unmount();
+
+      console.log(markerEl);
+      if (popupEl) popupEl.parentElement?.removeChild(popupEl);
+      if (markerEl) markerEl.parentElement?.removeChild(markerEl);
+
+      marker.mapBoxMarker.remove();
     });
   };
 
@@ -68,7 +77,7 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
     markerRoot.render(
       <Marker event={event} onClick={() => setFocusedEvent(event)} />
     );
-    return [markerEl, popupEl];
+    return { markerEl, popupEl, markerRoot, popupRoot };
   };
 
   // initialize map when container is ref is available
@@ -78,8 +87,8 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [lng, lat],
-      zoom: zoom,
+      center: [19.94, 50.04],
+      zoom: 9,
     });
   });
   // initialize map and focus on user location on first render
@@ -93,12 +102,6 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
       trackUserLocation: true,
     });
     map.current.addControl(geolocate);
-    map.current.on("move", () => {
-      if (!map.current) return;
-      setLng(map.current.getCenter().lng);
-      setLat(map.current.getCenter().lat);
-      setZoom(map.current.getZoom());
-    });
     map.current.on("load", function () {
       //Focus on user location
       geolocate.trigger();
@@ -109,14 +112,20 @@ const Map = ({ events, focusedEvent, setFocusedEvent }: Props) => {
   useEffect(() => {
     removeMarkers();
     const newMarkers = events.map((event) => {
-      const [markerEl, popupEl] = createMarkerPopupDOMElements(event);
+      const { markerEl, popupEl, markerRoot, popupRoot } =
+        createMarkerPopupDOMElements(event);
       const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupEl);
       const marker = new mapboxgl.Marker(markerEl)
         .setLngLat([event.coordinates[0], event.coordinates[1]])
         .setPopup(popup)
         // @ts-ignore
         .addTo(map.current);
-      return { id: event.id, mapBoxMarker: marker } as MapMarker;
+      return {
+        id: event.id,
+        mapBoxMarker: marker,
+        markerRoot: markerRoot,
+        popupRoot: popupRoot,
+      } as MapMarker;
     });
     setMarkers(newMarkers);
   }, [events]);

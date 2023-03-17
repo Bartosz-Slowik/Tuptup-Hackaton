@@ -3,14 +3,17 @@ import { Event } from "../../../types/types";
 
 interface Props {
   event: Event;
-  onClick: (id: Number) => void;
+  onClick: (event: Event) => void;
+  className?: string;
 }
 
-export default function ListEvent({ event, onClick }: Props) {
+export default function ListEvent({ event, onClick, className }: Props) {
   return (
     <button
-      className={`flex cursor-pointer flex-row p-2`}
-      onClick={() => onClick(event.id)}
+      className={`flex cursor-pointer flex-row p-2 ${
+        className ? className : ""
+      }`}
+      onClick={() => onClick(event)}
     >
       <EventIcon type={event.type} className="h-6 w-6" />
       <div className="ml-4">{event.title}</div>

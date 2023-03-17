@@ -1,14 +1,28 @@
 import ListEvent from "./ListEvent";
-
 import { Event } from "../../../types/types";
 
 interface Props {
-  onClick: (id: Number) => void;
   events: Array<Event>;
+  focusedEvent: Event | null;
+  setFocusedEvent: (event: Event | null) => void;
   className?: string;
 }
 
-const EventsList = ({ onClick, events, className }: Props) => {
+const EventsList = ({
+  events,
+  focusedEvent,
+  setFocusedEvent,
+  className,
+}: Props) => {
+  const isFocusedOn = (event: Event) => {
+    if (!focusedEvent) return false;
+    return event.id === focusedEvent.id;
+  };
+  const toggleFocus = (event: Event) => {
+    if (!focusedEvent) setFocusedEvent(event);
+    else if (focusedEvent.id !== event.id) setFocusedEvent(event);
+    else setFocusedEvent(null);
+  };
   return (
     <div
       className={`flex flex-grow flex-col p-2 ${className ? className : ""}`}
@@ -18,7 +32,8 @@ const EventsList = ({ onClick, events, className }: Props) => {
           <ListEvent
             key={event.id}
             event={event}
-            onClick={(id) => onClick(id)}
+            onClick={() => toggleFocus(event)}
+            className={`${isFocusedOn(event) ? "bg-gray-200" : ""}`}
           />
         );
       })}

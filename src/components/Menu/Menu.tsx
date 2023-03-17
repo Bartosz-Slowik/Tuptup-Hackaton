@@ -1,32 +1,22 @@
 import { useState } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./SearchBar";
 import ExpandArrows from "./ExpandArrows";
 import EventsList from "./EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
-
 import { Event } from "../../types/types";
-
-const eventTypes = ["event"];
-const friendsTypes = ["sport", "party"];
-
-const filterEventsByType = (types: string[], array: Array<Event>) => {
-  return array.filter((item: Event) => {
-    return types.includes(item.type);
-  });
-};
-const filteredEventsByName = (name: string, array: Array<Event>) => {
-  return array.filter((item: Event) => {
-    return item.title.toLowerCase().includes(name.toLowerCase());
-  });
-};
 
 interface Props {
   showCreateEventPopup: () => void;
   events: Array<Event>;
   focusedEvent: Event | null;
   setFocusedEvent: (event: Event | null) => void;
+  searchQuery: string;
+  setSearchQuery: (searchQuery: string) => void;
+  filteredType: "friendsActivity" | "publicEvents" | "all";
+  setFilteredType: (
+    filteredType: "friendsActivity" | "publicEvents" | "all"
+  ) => void;
 }
 
 export default function Events({
@@ -34,22 +24,12 @@ export default function Events({
   events,
   focusedEvent,
   setFocusedEvent,
+  searchQuery,
+  setSearchQuery,
+  filteredType,
+  setFilteredType,
 }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
-  const [filter, setFilter] = useState<"friends" | "events" | "all">("all");
-  const [search, setSearch] = useState("");
-
-  let filteredEvents = filteredEventsByName(search, events);
-  switch (filter) {
-    case "friends":
-      filteredEvents = filterEventsByType(friendsTypes, filteredEvents);
-      break;
-    case "events":
-      filteredEvents = filterEventsByType(eventTypes, filteredEvents);
-      break;
-    default:
-      break;
-  }
 
   return (
     <div
@@ -69,35 +49,35 @@ export default function Events({
 
       <SearchBar
         className={`order-2 md:!block ${!fullScreen && "hidden"}`}
-        Icon={MagnifyingGlassIcon}
         text="Search"
-        callCack={(input) => {
-          setSearch(input);
-        }}
+        value={searchQuery}
+        setValue={setSearchQuery}
       />
 
       <NewEventRow
         className={`${fullScreen && "!order-5"} order-3 md:!order-5`}
         onTakePhoto={() => {}}
-        onUploadPhoto={() => {}}
+        onUploadPhoto={() => {
+          showCreateEventPopup();
+        }}
       />
 
       <FiltersRow
         className={`${
           fullScreen && "!order-3"
         } order-4 !pb-2 !pt-0 md:!order-3`}
-        filter={filter}
-        setFilter={(filter) => setFilter(filter)}
+        filter={filteredType}
+        setFilter={setFilteredType}
       />
 
       <EventsList
         className={`${fullScreen && "!order-4"} order-5  md:!order-4`}
-        onClick={(id: Number) => {
-          setFocusedEvent(events.find((event) => event.id === id) || null);
-
+        focusedEvent={focusedEvent}
+        setFocusedEvent={(event: Event | null) => {
+          setFocusedEvent(event);
           setFullScreen(false);
         }}
-        events={filteredEvents}
+        events={events}
       />
     </div>
   );

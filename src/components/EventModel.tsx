@@ -18,5 +18,6 @@ export default class Event {
     this.amount = amount;
     this.type = type;
   }
+
   generateEvent() {}
 }
