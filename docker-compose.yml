@@ -9,5 +9,15 @@ services:
       - POSTGRES_PASSWORD=meetnow-password
       - POSTGRES_USER=meetnow-user
       - POSTGRES_DB=meetnow_db
+
+  meetnow-spring:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - meetnow-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://meetnow-db:5432/
+    restart: on-failure
 volumes:
   pgdata:
