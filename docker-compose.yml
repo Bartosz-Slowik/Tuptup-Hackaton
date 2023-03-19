@@ -1,6 +1,7 @@
 services:
   meetnow-db:
     image: postgres:15
+    hostname: postgres-host
     ports:
       - "5432:5432"
     volumes:
@@ -11,13 +12,14 @@ services:
       - POSTGRES_DB=meetnow_db
 
   meetnow-spring:
-    build: .
+    build:
+      dockerfile: dockerfiles/springapp.Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - meetnow-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://meetnow-db:5432/
-    restart: on-failure
+      WAIT_HOSTS: postgres-host
+      SPRING_DATASOURCE_URL: jdbc:postgresql://meetnow-db:5432/meetnow_db
 volumes:
   pgdata:
