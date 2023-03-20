@@ -1,3 +1,4 @@
 .git
 .idea
 .devcontainer
+frontend/node_modules
