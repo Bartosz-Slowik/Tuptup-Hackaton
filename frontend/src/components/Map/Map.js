@@ -3,12 +3,18 @@ import mapboxgl from "mapbox-gl";
 import "./Map.css";
 import * as ReactDOM from "react-dom/client";
 import Overview from "./overview";
+import { useEvents } from "../../hooks/EventsDataProvider";
+import { useFocus } from "../../hooks/EventsFocusProvider";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-const Map = ({ events, focusedEvent, setFocusedEvent }) => {
+const Map = () => {
   const mapContainerRef = useRef(null);
+  const { events } = useEvents();
+  const { focusedEvent, setFocusedEvent } = useFocus();
+
+  //console.log(events);
 
   // Initialize map when component mounts
   useEffect(() => {

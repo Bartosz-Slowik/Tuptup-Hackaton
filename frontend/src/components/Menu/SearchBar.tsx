@@ -1,13 +1,12 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useEvents } from "../../hooks/EventsDataProvider";
 
 interface Props {
-  text: string;
-  value: string;
-  setValue: (input: string) => void;
   className?: string;
 }
 
-const SearchBar = ({ text, value, setValue, className }: Props) => {
+const SearchBar = ({ className }: Props) => {
+  const { searchQuery, setSearchQuery } = useEvents();
   return (
     <div className={`w-full p-2 ${className ? className : ""}`}>
       <div className={`relative w-full`}>
@@ -17,9 +16,9 @@ const SearchBar = ({ text, value, setValue, className }: Props) => {
         <input
           type="text"
           className="font-bolder w-full rounded-md bg-gray-200 py-2.5 pl-10 shadow-sm focus:outline-none"
-          placeholder={text}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
     </div>
