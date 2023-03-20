@@ -30,8 +30,6 @@ export default function SideMenu() {
           open ? "right-0" : "-right-[300px]"
         }`}
       >
-
-
         <MenuSection>
           <UserProfile />
           <UserTags />
@@ -40,7 +38,7 @@ export default function SideMenu() {
         <MenuSection>
           <Button text="Friends" Icon={UserGroupIcon} />
           <Button text="Messages" Icon={EnvelopeIcon} />
-          <Button text="Stories" Icon={IoMdImages} />
+          <Button text="Memories" Icon={IoMdImages} />
         </MenuSection>
 
         <MenuSection className="flex-grow justify-end">
