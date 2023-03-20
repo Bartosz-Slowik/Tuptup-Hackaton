@@ -1,4 +1,10 @@
 services:
+  react-app:
+    build:
+      dockerfile: dockerfiles/reactapp.Dockerfile
+    ports:
+      - "3000:3000"
+
   meetnow-db:
     image: postgres:15
     hostname: postgres-host
