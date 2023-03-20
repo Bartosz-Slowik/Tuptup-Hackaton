@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Event } from "../types/types";
 import { useEvents } from "./EventsDataProvider";
 
