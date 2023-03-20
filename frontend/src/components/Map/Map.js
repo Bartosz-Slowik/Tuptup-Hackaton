@@ -61,7 +61,7 @@ const Map = ({ events, focusedEvent, setFocusedEvent }) => {
                 title={event.title}
                 description={event.description}
                 image={`/uploads/${event.image}`}
-                friends={event.participants}
+                friends={"PLACEHOLDER"}
               />
             );
           }, 100);
