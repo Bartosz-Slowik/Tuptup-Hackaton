@@ -4,31 +4,12 @@ import ExpandArrows from "./ExpandArrows";
 import EventsList from "./EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
-import { Event } from "../../types/types";
 
 interface Props {
   showCreateEventPopup: () => void;
-  events: Array<Event>;
-  focusedEvent: Event | null;
-  setFocusedEvent: (event: Event | null) => void;
-  searchQuery: string;
-  setSearchQuery: (searchQuery: string) => void;
-  filteredType: "friendsActivity" | "publicEvents" | "all";
-  setFilteredType: (
-    filteredType: "friendsActivity" | "publicEvents" | "all"
-  ) => void;
 }
 
-export default function Events({
-  showCreateEventPopup,
-  events,
-  focusedEvent,
-  setFocusedEvent,
-  searchQuery,
-  setSearchQuery,
-  filteredType,
-  setFilteredType,
-}: Props) {
+export default function Events({ showCreateEventPopup }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
 
   return (
@@ -47,12 +28,7 @@ export default function Events({
         <ExpandArrows direction={fullScreen ? "down" : "up"} />
       </div>
 
-      <SearchBar
-        className={`order-2 md:!block ${!fullScreen && "hidden"}`}
-        text="Search"
-        value={searchQuery}
-        setValue={setSearchQuery}
-      />
+      <SearchBar className={`order-2 md:!block ${!fullScreen && "hidden"}`} />
 
       <NewEventRow
         className={`${fullScreen && "!order-5"} order-3 md:!order-5`}
@@ -66,18 +42,13 @@ export default function Events({
         className={`${
           fullScreen && "!order-3"
         } order-4 !pb-2 !pt-0 md:!order-3`}
-        filter={filteredType}
-        setFilter={setFilteredType}
       />
 
       <EventsList
         className={`${fullScreen && "!order-4"} order-5  md:!order-4`}
-        focusedEvent={focusedEvent}
-        setFocusedEvent={(event: Event | null) => {
-          setFocusedEvent(event);
+        onClick={() => {
           setFullScreen(false);
         }}
-        events={events}
       />
     </div>
   );

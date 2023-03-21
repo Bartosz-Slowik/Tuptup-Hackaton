@@ -13,17 +13,4 @@ interface Event {
   image: string;
 }
 
-interface MapBoxEvent {
-  type: "Feature";
-  properties: {
-    id: number;
-    title: string;
-    description: string;
-  };
-  geometry: {
-    coordinates: Array<number>;
-    type: "Point";
-  };
-}
-
-export type { User, Event, MapBoxEvent };
+export type { User, Event };
