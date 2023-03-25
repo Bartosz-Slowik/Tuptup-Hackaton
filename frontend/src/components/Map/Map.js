@@ -7,7 +7,7 @@ import { useEvents } from "../../hooks/EventsDataProvider";
 import { useFocus } from "../../hooks/EventsFocusProvider";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
+  "pk.eyJ1Ijoicml0aXQiLCJhIjoiY2xmb2p0NWtrMHdkMzQ0bnJwcTZlbXh5cSJ9.DGdh4-6fvKJFvt2Pp5ZMNg";
 
 const Map = () => {
   const mapContainerRef = useRef(null);
