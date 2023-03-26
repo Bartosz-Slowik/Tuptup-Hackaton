@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SearchBar from "./SearchBar";
-import EventsList from "./EventsList/EventsList";
+import EventsList from "../EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
 import Menu from "../UI/Menu";
