@@ -19,5 +19,5 @@ public class HostEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", nullable = false)
-    private HostEntity host;
+    private EventEntity event;
 }
