@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useEvents } from "../../hooks/EventsDataProvider";
 import EventsList from "../EventsList/EventsList";
+import Feed from "../Feed/Feed";
 import Menu from "../UI/Menu";
 
 interface Props {
@@ -28,7 +29,7 @@ export default function Memories({ showCreateEventPopup }: Props) {
         fullScreen={fullScreen}
         onFullScreenChange={onFullScreenChangeHandler}
       >
-        <EventsList onClick={() => {}} />
+        <Feed />
       </Menu>
     </div>
   );
