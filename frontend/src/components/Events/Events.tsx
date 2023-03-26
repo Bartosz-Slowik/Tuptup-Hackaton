@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import EventsList from "../EventsList/EventsList";
 import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
 import Menu from "../UI/Menu";
+import { useEvents } from "../../hooks/EventsDataProvider";
 
 interface Props {
   showCreateEventPopup: () => void;
@@ -11,10 +12,17 @@ interface Props {
 
 export default function Events({ showCreateEventPopup }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
+  const { collection, setCollection } = useEvents();
 
   const onFullScreenChangeHandler = () => {
     setFullScreen((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (collection !== "events") {
+      setCollection("events");
+    }
+  }, [collection, setCollection]);
 
   return (
     <div>

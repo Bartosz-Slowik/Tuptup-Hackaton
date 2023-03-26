@@ -12,8 +12,14 @@ const filteredEventsByName = (query: string, array: Array<Event>) => {
   });
 };
 
-const getEvents = (typeQuery: string, nameQuery: string): Event[] => {
-  let filteredEvents = geoJson.places as Array<Event>;
+const getEvents = (
+  typeQuery: string,
+  nameQuery: string,
+  collection: string
+): Event[] => {
+  let filteredEvents: Array<Event>;
+  if (collection === "memories") filteredEvents = geoJson.memories;
+  else filteredEvents = geoJson.events;
   filteredEvents = filteredEventsByName(nameQuery, filteredEvents);
   if (typeQuery === "friendsActivity") {
     filteredEvents = filterEventsByType(["sport", "party"], filteredEvents);
