@@ -31,5 +31,4 @@ public class EventEntity {
 
     @Column(name = "coordinates", columnDefinition = "Point")
     private Point coordinates;
-
 }
