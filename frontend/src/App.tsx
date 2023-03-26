@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SideMenu from "./components/SideMenu/SideMenu";
 import Map from "./components/Map/Map";
-import Menu from "./components/Menu/Menu";
+import Menu from "./components/Events/Events";
 import CreateEvent from "./components/createEvent";
 import { Event } from "./types/types";
 import { EventsDataProvider } from "./hooks/EventsDataProvider";
