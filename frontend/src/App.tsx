@@ -1,24 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import SideMenu from "./components/SideMenu/SideMenu";
 import Map from "./components/Map/Map";
-import Menu from "./components/Events/Events";
+import Events from "./components/Events/Events";
 import CreateEvent from "./components/createEvent";
-import { Event } from "./types/types";
 import { EventsDataProvider } from "./hooks/EventsDataProvider";
 import { EventsFocusProvider } from "./hooks/EventsFocusProvider";
+import Memories from "./components/Memories/Memories";
 
 function App() {
-  const [focusedEvent, setFocusedEvent] = useState<Event | null>(null);
   const [createEventPopupOpen, setCreateEventPopupOpen] = useState(false);
+  //TODO - move to react router
+  const [appState, setAppState] = useState<"main" | "memories">("main");
+
+  const onChangeAppStateHandler = (state: "main" | "memories") => {
+    setAppState(state);
+  };
 
   return (
     <div className="z-5 flex w-screen flex-col">
       <EventsDataProvider>
         <EventsFocusProvider>
           <Map />
-          <SideMenu />
-          <Menu showCreateEventPopup={() => setCreateEventPopupOpen(true)} />
+          <SideMenu onChangeAppState={onChangeAppStateHandler} />
+          {appState === "main" && (
+            <Events
+              showCreateEventPopup={() => setCreateEventPopupOpen(true)}
+            />
+          )}
+          {appState === "memories" && (
+            <Memories
+              showCreateEventPopup={() => setCreateEventPopupOpen(true)}
+            />
+          )}
         </EventsFocusProvider>
       </EventsDataProvider>
       {createEventPopupOpen && (
