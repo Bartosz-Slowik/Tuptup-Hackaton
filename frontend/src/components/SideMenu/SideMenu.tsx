@@ -7,17 +7,27 @@ import {
 } from "@heroicons/react/24/solid";
 
 import { IoMdImages } from "react-icons/io";
+import { StarIcon } from "@heroicons/react/24/solid";
 import MenuSection from "./MenuSection";
 import UserTags from "./UserTags";
 import Button from "../UI/Button";
 import FixedIcon from "./FixedIcon";
 import Background from "./Background";
 
-export default function SideMenu() {
+interface Props {
+  onChangeAppState: (state: "main" | "memories") => void;
+}
+
+export default function SideMenu({ onChangeAppState }: Props) {
   const [open, setOpen] = useState(false);
 
   const toggle = (action: "show" | "hide") => {
     action === "show" ? setOpen(true) : setOpen(false);
+  };
+
+  const onSetAppState = (state: "main" | "memories") => {
+    onChangeAppState(state);
+    toggle("hide");
   };
 
   return (
@@ -36,9 +46,18 @@ export default function SideMenu() {
         </MenuSection>
 
         <MenuSection>
+          <Button
+            text="Events"
+            Icon={StarIcon}
+            onClick={() => onSetAppState("main")}
+          />
           <Button text="Friends" Icon={UserGroupIcon} />
           <Button text="Messages" Icon={EnvelopeIcon} />
-          <Button text="Memories" Icon={IoMdImages} />
+          <Button
+            text="Memories"
+            Icon={IoMdImages}
+            onClick={() => onSetAppState("memories")}
+          />
         </MenuSection>
 
         <MenuSection className="flex-grow justify-end">

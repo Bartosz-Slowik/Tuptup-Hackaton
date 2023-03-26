@@ -1,8 +1,8 @@
-import ListEvent from "./ListEvent";
-import { Event } from "../../../types/types";
-import { useEvents } from "../../../hooks/EventsDataProvider";
-import { useFocus } from "../../../hooks/EventsFocusProvider";
-import Spinner from "../../UI/Spinner";
+import ListEvent from "./EventListItem";
+import { Event } from "../../types/types";
+import { useEvents } from "../../hooks/EventsDataProvider";
+import { useFocus } from "../../hooks/EventsFocusProvider";
+import Spinner from "../UI/Spinner";
 
 interface Props {
   className?: string;

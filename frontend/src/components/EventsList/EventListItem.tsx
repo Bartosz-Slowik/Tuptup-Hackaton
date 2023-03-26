@@ -1,5 +1,5 @@
 import EventIcon from "./EventIcon";
-import { Event } from "../../../types/types";
+import { Event } from "../../types/types";
 
 interface Props {
   event: Event;

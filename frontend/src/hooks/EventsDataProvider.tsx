@@ -8,6 +8,8 @@ interface EventsDataContextType {
   setTypeQuery: (type: string) => void;
   searchQuery: string;
   setSearchQuery: (search: string) => void;
+  collection: "events" | "memories";
+  setCollection: (collection: "events" | "memories") => void;
   loading: boolean;
 }
 
@@ -23,24 +25,28 @@ const EventsDataProvider = ({ children }: Props) => {
   const [typeQuery, setTypeQuery] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [collection, setCollection] = useState<"events" | "memories">("events");
 
   const loadEvents = useCallback(() => {
     setLoading(true);
-    const events = getEvents(typeQuery, searchQuery);
+    const events = getEvents(typeQuery, searchQuery, collection);
     setLoading(false);
     return events;
-  }, [typeQuery, searchQuery]);
+  }, [typeQuery, searchQuery, collection]);
 
   const value = useMemo(() => {
-    const eventsData = {} as EventsDataContextType;
-    eventsData.events = loadEvents();
-    eventsData.typeQuery = typeQuery;
-    eventsData.setTypeQuery = setTypeQuery;
-    eventsData.searchQuery = searchQuery;
-    eventsData.setSearchQuery = setSearchQuery;
-    eventsData.loading = loading;
+    const eventsData = {
+      events: loadEvents(),
+      typeQuery,
+      setTypeQuery,
+      searchQuery,
+      setSearchQuery,
+      collection,
+      setCollection,
+      loading,
+    } as EventsDataContextType;
     return eventsData;
-  }, [typeQuery, searchQuery, loadEvents, loading]);
+  }, [typeQuery, searchQuery, loadEvents, collection, loading]);
 
   return (
     <EventsDataContext.Provider value={value}>
