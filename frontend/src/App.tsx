@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import SideMenu from "./components/SideMenu/SideMenu";
-import Map from "./components/Map/Map";
+import MyMap from "./components/Map/Map";
 import Events from "./components/Events/Events";
 import CreateEvent from "./components/createEvent";
 import { EventsDataProvider } from "./hooks/EventsDataProvider";
@@ -21,7 +21,7 @@ function App() {
     <div className="z-5 flex w-screen flex-col">
       <EventsDataProvider>
         <EventsFocusProvider>
-          <Map />
+          <MyMap />
           <SideMenu onChangeAppState={onChangeAppStateHandler} />
           {appState === "main" && (
             <Events
