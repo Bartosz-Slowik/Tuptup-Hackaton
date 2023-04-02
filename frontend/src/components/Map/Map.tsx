@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Map, Overlay, Point, Bounds } from "pigeon-maps";
 
 import Overview from "./Overview";
@@ -9,10 +9,37 @@ import CustomMarker from "./CustomMarker";
 const defaultCenter: Point = [50.04, 19.94];
 const defaultZoom: number = 11;
 
+type Viewport = {
+  width: number;
+  height: number;
+};
+
+const latLngPixelOffset = (
+  latLng: Point,
+  bounds: Bounds,
+  viewport: Viewport,
+  offset: { x: number; y: number }
+): Point => {
+  const latHeight = (bounds.ne[0] - bounds.sw[0]) / viewport.height;
+  const lngWidth = (bounds.ne[1] - bounds.sw[1]) / viewport.width;
+  return [latHeight * offset.y + latLng[0], lngWidth * offset.x + latLng[1]];
+};
+
 export default function MyMap() {
   const { events } = useEvents();
   const { focusedEvent, setFocusedEvent } = useFocus();
   const [center, setCenter] = useState<Point>(defaultCenter);
+  const [bounds, setBounds] = useState<Bounds>();
+
+  const [viewport, setVievport] = useState<Viewport>({ height: 0, width: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref || !ref.current) return;
+    setVievport({
+      width: ref.current.clientWidth,
+      height: ref.current.clientHeight,
+    });
+  }, [ref]);
 
   const onBoundariesChangeHandler = ({
     center,
@@ -26,19 +53,26 @@ export default function MyMap() {
     initial: boolean;
   }) => {
     setCenter(center);
+    setBounds(bounds);
   };
 
   useEffect(() => {
     if (!focusedEvent) return;
-    const flyTo = [
+    let flyTo = [
       focusedEvent.coordinates[1],
       focusedEvent.coordinates[0],
     ] as Point;
+    if (bounds) {
+      flyTo = latLngPixelOffset(flyTo, bounds, viewport, { x: 0, y: 150 });
+    }
     setCenter(flyTo);
-  }, [focusedEvent]);
+  }, [bounds, focusedEvent, viewport]);
 
   return (
-    <div className="absolute top-0 left-0 right-0 bottom-[30vh] md:left-[22rem] md:bottom-0">
+    <div
+      className="absolute top-0 left-0 right-0 bottom-[30vh] md:left-[22rem] md:bottom-0"
+      ref={ref}
+    >
       <Map
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
