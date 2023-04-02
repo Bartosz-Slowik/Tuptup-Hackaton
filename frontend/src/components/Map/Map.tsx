@@ -66,7 +66,7 @@ export default function MyMap() {
       flyTo = latLngPixelOffset(flyTo, bounds, viewport, { x: 0, y: 150 });
     }
     setCenter(flyTo);
-  }, [bounds, focusedEvent, viewport]);
+  }, [focusedEvent]);
 
   return (
     <div
