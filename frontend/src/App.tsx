@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import SideMenu from "./components/SideMenu/SideMenu";
 import MyMap from "./components/Map/Map";
 import Events from "./components/Events/Events";
@@ -7,6 +6,8 @@ import CreateEvent from "./components/createEvent";
 import { EventsDataProvider } from "./hooks/EventsDataProvider";
 import { EventsFocusProvider } from "./hooks/EventsFocusProvider";
 import Memories from "./components/Memories/Memories";
+
+import "./App.css";
 
 function App() {
   const [createEventPopupOpen, setCreateEventPopupOpen] = useState(false);
