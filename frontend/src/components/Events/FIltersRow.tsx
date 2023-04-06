@@ -1,4 +1,7 @@
-import { StarIcon } from "@heroicons/react/24/solid";
+import React from "react";
+import {
+  HiStar
+} from "react-icons/hi2";
 import { MdEmojiPeople } from "react-icons/md";
 import BigButton from "../UI/BigButton";
 import { useEvents } from "../../hooks/EventsDataProvider";
@@ -29,7 +32,7 @@ const FiltersRow = ({ className }: Props) => {
         className={`${
           typeQuery === "publicEvents" && "!bg-[#007EFF]"
         } hover:bg-[#00B1D9]`}
-        Icon={StarIcon}
+        Icon={HiStar}
         text="Events"
         onClick={() =>
           setTypeQuery(typeQuery === "publicEvents" ? "all" : "publicEvents")

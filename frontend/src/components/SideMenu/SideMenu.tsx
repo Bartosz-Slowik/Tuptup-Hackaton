@@ -1,13 +1,14 @@
+import React from "react";
 import { useState } from "react";
 import UserProfile from "./UserProfile";
 import {
-  UserGroupIcon,
-  EnvelopeIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/solid";
+  HiUserGroup,
+  HiEnvelope,
+  HiInformationCircle,
+  HiStar
+} from "react-icons/hi2";
 
 import { IoMdImages } from "react-icons/io";
-import { StarIcon } from "@heroicons/react/24/solid";
 import MenuSection from "./MenuSection";
 import UserTags from "./UserTags";
 import Button from "../UI/Button";
@@ -48,11 +49,11 @@ export default function SideMenu({ onChangeAppState }: Props) {
         <MenuSection>
           <Button
             text="Events"
-            Icon={StarIcon}
+            Icon={HiStar}
             onClick={() => onSetAppState("main")}
           />
-          <Button text="Friends" Icon={UserGroupIcon} />
-          <Button text="Messages" Icon={EnvelopeIcon} />
+          <Button text="Friends" Icon={HiUserGroup} />
+          <Button text="Messages" Icon={HiEnvelope} />
           <Button
             text="Memories"
             Icon={IoMdImages}
@@ -61,7 +62,7 @@ export default function SideMenu({ onChangeAppState }: Props) {
         </MenuSection>
 
         <MenuSection className="flex-grow justify-end">
-          <Button text="About us" Icon={InformationCircleIcon} />
+          <Button text="About us" Icon={HiInformationCircle} />
           <div className="-m-2 mt-2 flex cursor-pointer flex-col rounded bg-violet-900 p-2 text-white">
             <div className="font-bold">Contact Us</div>
             <div>For advertising and colaboration</div>

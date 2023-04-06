@@ -1,4 +1,7 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import React from "react";
+import {
+  HiMagnifyingGlass
+} from "react-icons/hi2";
 import { useEvents } from "../../hooks/EventsDataProvider";
 
 interface Props {
@@ -11,7 +14,7 @@ const SearchBar = ({ className }: Props) => {
     <div className={`w-full p-2 ${className ? className : ""}`}>
       <div className={`relative w-full`}>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-          <MagnifyingGlassIcon className="h-6 w-6 " />
+          <HiMagnifyingGlass className="h-6 w-6 " />
         </span>
         <input
           type="text"

@@ -1,4 +1,7 @@
-import { StarIcon } from "@heroicons/react/24/solid";
+import React from "react";
+import {
+  HiStar
+} from "react-icons/hi2";
 import { MdEmojiPeople } from "react-icons/md";
 
 interface Props {
@@ -11,9 +14,9 @@ const EventIcon = ({ type, className }: Props) => {
     case "event":
       return <MdEmojiPeople className={className} />;
     case "party":
-      return <StarIcon className={className} />;
+      return <HiStar className={className} />;
     default:
-      return <StarIcon className={className} />;
+      return <HiStar className={className} />;
   }
 };
 

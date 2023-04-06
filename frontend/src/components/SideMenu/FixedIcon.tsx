@@ -1,4 +1,5 @@
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import React from "react";
+import { HiBars3 } from "react-icons/hi2";
 
 interface Props {
   onClick: () => void;
@@ -10,7 +11,7 @@ const FixedIcon = ({ onClick }: Props) => {
       rounded-full bg-violet-900 p-2 text-center text-white shadow-lg`}
       onClick={() => onClick && onClick()}
     >
-      <Bars3Icon className="h-8 w-8 " />
+      <HiBars3 className="h-8 w-8 " />
     </div>
   );
 };

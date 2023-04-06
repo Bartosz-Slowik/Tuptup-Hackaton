@@ -1,4 +1,5 @@
-import { ArrowSmallUpIcon } from "@heroicons/react/24/solid";
+import React from "react";
+import {HiArrowUp} from "react-icons/hi2";
 
 interface Props {
   direction: "up" | "down";
@@ -9,7 +10,7 @@ const ExpandArrows = ({ direction }: Props) => {
     <div className="flex flex-row text-gray-500">
       {[...Array(5)].map((_, i) => {
         return (
-          <ArrowSmallUpIcon
+          <HiArrowUp
             key={i}
             className={`${
               direction === "down" && "rotate-180"
