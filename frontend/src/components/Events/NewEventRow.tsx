@@ -1,4 +1,5 @@
-import { CameraIcon } from "@heroicons/react/24/solid";
+import React from "react";
+import { HiCamera} from "react-icons/hi2";
 import { BiCalendarEvent } from "react-icons/bi";
 import BigButton from "../UI/BigButton";
 
@@ -14,7 +15,7 @@ const NewEventRow = ({ className, onTakePhoto, onUploadPhoto }: Props) => {
       className={`flex flex-row space-x-2 p-2 ${className ? className : ""}`}
     >
       <BigButton
-        Icon={CameraIcon}
+        Icon={HiCamera}
         className="!bg-[#008B7C] !text-white hover:!bg-[#00C2B0]"
         text="Take a photo"
         onClick={() => onTakePhoto()}

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import EventsList from "../EventsList/EventsList";

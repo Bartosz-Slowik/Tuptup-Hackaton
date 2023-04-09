@@ -1,3 +1,4 @@
+import React from "react";
 import { Event } from "../../types/types";
 import { BsFillPersonFill } from "react-icons/bs";
 

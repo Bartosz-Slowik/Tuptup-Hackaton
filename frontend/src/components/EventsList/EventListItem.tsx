@@ -1,3 +1,4 @@
+import React from "react";
 import EventIcon from "./EventIcon";
 import { Event } from "../../types/types";
 

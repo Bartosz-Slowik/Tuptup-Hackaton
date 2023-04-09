@@ -1,3 +1,4 @@
+import React from "react";
 import ListEvent from "./EventListItem";
 import { Event } from "../../types/types";
 import { useEvents } from "../../hooks/EventsDataProvider";

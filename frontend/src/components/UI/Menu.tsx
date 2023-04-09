@@ -1,3 +1,4 @@
+import React from "react";
 import ExpandArrows from "./ExpandArrows";
 
 interface Props {

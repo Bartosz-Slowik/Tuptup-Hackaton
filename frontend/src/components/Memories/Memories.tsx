@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useEvents } from "../../hooks/EventsDataProvider";
 import EventsList from "../EventsList/EventsList";

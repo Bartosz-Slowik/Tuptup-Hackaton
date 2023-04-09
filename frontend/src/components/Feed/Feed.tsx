@@ -1,3 +1,4 @@
+import React from "react";
 import { useEvents } from "../../hooks/EventsDataProvider";
 import FeedItem from "./FeedItem";
 
