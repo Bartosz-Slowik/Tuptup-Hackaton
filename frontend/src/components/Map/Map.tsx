@@ -1,13 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Map, Overlay, Point, Bounds } from "pigeon-maps";
-
+import { Map, Overlay, Point, Bounds} from "pigeon-maps";
+import mapboxgl from 'mapbox-gl'; 
 import Overview from "./Overview";
 import { useFocus } from "../../hooks/EventsFocusProvider";
 import { useEvents } from "../../hooks/EventsDataProvider";
 import CustomMarker from "./CustomMarker";
 
+
+
+
+//const mapStyle = "mapbox://styles/mapbox/navigation-day-v1";
+
 const defaultCenter: Point = [50.04, 19.94];
 const defaultZoom: number = 11;
+
+const provider = (x: any, y: any, z: any, dpr: any) => {
+  mapboxgl.accessToken = "pk.eyJ1Ijoicml0aXQiLCJhIjoiY2xmb2p0NWtrMHdkMzQ0bnJwcTZlbXh5cSJ9.DGdh4-6fvKJFvt2Pp5ZMNg";
+  return `https://api.mapbox.com/styles/v1/mapbox/navigation-day-v1/tiles/256/${z}/${x}/${y}@2x?access_token=${mapboxgl.accessToken}`;
+};
 
 type Viewport = {
   width: number;
@@ -74,6 +84,7 @@ export default function MyMap() {
       ref={ref}
     >
       <Map
+        provider={provider}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         center={center}
