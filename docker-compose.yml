@@ -1,10 +1,9 @@
 services:
-  react-app:
-    build:
-      dockerfile: dockerfiles/reactapp.Dockerfile
-    ports:
-      - "3000:3000"
-
+#  react-app:
+#    build:
+#      dockerfile: dockerfiles/reactapp.Dockerfile
+#    ports:
+#      - "3000:3000"
   meetnow-db:
     image: postgres:15
     hostname: postgres-host
@@ -16,16 +15,15 @@ services:
       - POSTGRES_PASSWORD=meetnow-password
       - POSTGRES_USER=meetnow-user
       - POSTGRES_DB=meetnow_db
-
-  meetnow-spring:
-    build:
-      dockerfile: dockerfiles/springapp.Dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      - meetnow-db
-    environment:
-      WAIT_HOSTS: postgres-host
-      SPRING_DATASOURCE_URL: jdbc:postgresql://meetnow-db:5432/meetnow_db
+#  meetnow-spring:
+#    build:
+#      dockerfile: dockerfiles/springapp.Dockerfile
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - meetnow-db
+#    environment:
+#      WAIT_HOSTS: postgres-host
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://meetnow-db:5432/meetnow_db
 volumes:
   pgdata:
