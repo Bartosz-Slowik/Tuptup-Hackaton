@@ -88,9 +88,4 @@ public class EventService {
                 .title(ent.getTitle())
                 .build();
     }
-//    private PointDto convertToPointDto(Point point) {
-//        return new PointDto(point.getCoordinates());
-//        var x = point.getCoordinates()
-//    }
-
 }
