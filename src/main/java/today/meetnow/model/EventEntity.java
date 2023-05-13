@@ -4,11 +4,10 @@ package today.meetnow.model;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.geo.Point;
+import org.locationtech.jts.geom.Point;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+
 
 @Table(name = "event")
 @Entity
@@ -31,7 +30,7 @@ public class EventEntity {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "coordinates", columnDefinition = "Point")
+    @Column(columnDefinition = "geometry(Point, 4326)")
     private Point coordinates;
 
     @Column(name = "start_date")

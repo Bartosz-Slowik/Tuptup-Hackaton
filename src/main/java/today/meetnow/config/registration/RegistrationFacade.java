@@ -8,6 +8,8 @@ import today.meetnow.config.registration.dto.RegistrationRequest;
 import today.meetnow.config.registration.dto.RegistrationResponse;
 import today.meetnow.exception.UserAlreadyExistsException;
 import today.meetnow.model.UserEntity;
+import today.meetnow.model.UserPersonalDataEntity;
+import today.meetnow.repository.UserPersonalDataRepository;
 import today.meetnow.repository.UserRepository;
 
 @RequiredArgsConstructor
@@ -15,6 +17,7 @@ import today.meetnow.repository.UserRepository;
 public class RegistrationFacade {
 
     private final UserRepository userRepository;
+    private final UserPersonalDataRepository userPersonalDataRepository;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -30,6 +33,17 @@ public class RegistrationFacade {
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         UserEntity savedUser = userRepository.save(user);
 
+        UserPersonalDataEntity userPersonalData = new UserPersonalDataEntity();
+        userPersonalData.setUser(savedUser);
+        userPersonalData.setFirstName(registrationRequest.getFirstName());
+        userPersonalData.setLastName(registrationRequest.getLastName());
+        userPersonalData.setImage(registrationRequest.getImage());
+        userPersonalData.setDateOfBirth(registrationRequest.getDateOfBirth());
+        userPersonalData.setPhoneNr(userPersonalData.getPhoneNr());
+
+        userPersonalDataRepository.save(userPersonalData);
+
+        //TODO: input data validation
         return RegistrationResponse.ofUserEntity(savedUser);
 
     }

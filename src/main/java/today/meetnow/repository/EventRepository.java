@@ -15,4 +15,5 @@ public interface EventRepository extends JpaRepository<EventEntity, Long> {
     List<EventEntity> findAllByTypeAndTitle(Type type, String title);
     @Query("SELECT e FROM EventEntity e, ParticipantEntity p, UserEntity u WHERE p.event = e AND p.user = u AND u.id = :userId")
     List<EventEntity> findAllByUserId(Long userId);
+
 }

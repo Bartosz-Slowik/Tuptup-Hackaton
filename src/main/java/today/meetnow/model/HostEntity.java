@@ -3,7 +3,6 @@ package today.meetnow.model;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import today.meetnow.model.dto.HostDto;
 
 @Entity
 @Table(name = "host")

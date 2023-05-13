@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import today.meetnow.model.ParticipantEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ParticipantRepository extends JpaRepository<ParticipantEntity, Long> {

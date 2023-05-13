@@ -54,7 +54,7 @@ public class EventService {
                 .description(eventEntity.getDescription())
                 .type(eventEntity.getType())
                 .image(eventEntity.getImage())
-                .coordinates(eventEntity.getCoordinates())
+                .coordinates(eventEntity.getCoordinates().getCoordinates())
                 .host(hostDto)
                 .participants(participantDtoList)
                 .posts(eventPostDtoList)
@@ -88,5 +88,9 @@ public class EventService {
                 .title(ent.getTitle())
                 .build();
     }
+//    private PointDto convertToPointDto(Point point) {
+//        return new PointDto(point.getCoordinates());
+//        var x = point.getCoordinates()
+//    }
 
 }
