@@ -1,12 +1,6 @@
 services:
-  react-app:
-    build:
-      dockerfile: dockerfiles/reactapp.Dockerfile
-    ports:
-      - "3000:3000"
-
   meetnow-db:
-    image: postgres:15
+    image: postgis/postgis:latest
     hostname: postgres-host
     ports:
       - "5432:5432"
@@ -16,7 +10,6 @@ services:
       - POSTGRES_PASSWORD=meetnow-password
       - POSTGRES_USER=meetnow-user
       - POSTGRES_DB=meetnow_db
-
   meetnow-spring:
     build:
       dockerfile: dockerfiles/springapp.Dockerfile
