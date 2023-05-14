@@ -6,7 +6,6 @@ import useApi from "../../hooks/use-api";
 import { setToken } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
 
-
 interface Props {
   onSuccess: () => void;
 }
@@ -17,10 +16,10 @@ const LoginForm = ({ onSuccess }: Props) => {
     method: "POST",
   });
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const validEmail = email.includes("@");
+  const validEmail = username.length > 0;
   const validPassword = password.length >= 6;
 
   const formValid = validEmail && validPassword && !loading;
@@ -32,7 +31,7 @@ const LoginForm = ({ onSuccess }: Props) => {
   const onSubmitHandler = () => {
     if (!formValid) return;
     fetch({
-      email,
+      username,
       password,
     }).then((data) => {
       setToken(data.token);
@@ -45,14 +44,14 @@ const LoginForm = ({ onSuccess }: Props) => {
       <h1 className="">Log in to your account.</h1>
       {error && <h2 className="">{error}</h2>}
       <Input
-        name="email"
-        title="Email"
-        type="email"
-        placeholder="Your email"
-        value={email}
-        onChange={setEmail}
+        name="username"
+        title="Username"
+        type="text"
+        placeholder="Your username"
+        value={username}
+        onChange={setUsername}
         isValid={validEmail}
-        errorMessage="Please enter a valid email address."
+        errorMessage="Please enter a valid username."
       />
       <Input
         name="password"

@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Events from "../components/Events/Events";
 import MyMap from "../components/Map/Map";
 import Memories from "../components/Memories/Memories";
 import SideMenu from "../components/SideMenu/SideMenu";
 import { EventsDataProvider } from "../hooks/EventsDataProvider";
 import { EventsFocusProvider } from "../hooks/EventsFocusProvider";
+import { useNavigate } from "react-router-dom";
+import { getToken } from "../utils/auth";
 
 const Main = () => {
+  const navigate = useNavigate();
   const [createEventPopupOpen, setCreateEventPopupOpen] = useState(false);
-  //TODO - move to react router
   const [appState, setAppState] = useState<"main" | "memories">("main");
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate("/login", { replace: true });
+    }
+  }, []);
 
   const onChangeAppStateHandler = (state: "main" | "memories") => {
     setAppState(state);
@@ -20,7 +29,8 @@ const Main = () => {
       <EventsDataProvider>
         <EventsFocusProvider>
           <MyMap />
-          /*<SideMenu onChangeAppState={onChangeAppStateHandler} />
+          /*
+          <SideMenu onChangeAppState={onChangeAppStateHandler} />
           {appState === "main" && (
             <Events
               showCreateEventPopup={() => setCreateEventPopupOpen(true)}
@@ -30,7 +40,8 @@ const Main = () => {
             <Memories
               showCreateEventPopup={() => setCreateEventPopupOpen(true)}
             />
-          )}*/
+          )}
+          */
         </EventsFocusProvider>
       </EventsDataProvider>
     </div>

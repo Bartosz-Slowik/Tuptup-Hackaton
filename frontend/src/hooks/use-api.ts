@@ -5,6 +5,7 @@ const useApi = <T>(path: string, options?: RequestInit) => {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | false>(false);
+  const [res, setRes] = useState<Response | undefined>(undefined);
 
   const fetch = async (data?: Object) => {
     setLoading(true);
@@ -17,6 +18,7 @@ const useApi = <T>(path: string, options?: RequestInit) => {
       body = { body: JSON.stringify(data) };
     }
     const response = await fetchApi(path, options || body);
+    setRes(response);
     const json = await response.json();
     if (response.ok) {
       setData(json);
@@ -27,7 +29,7 @@ const useApi = <T>(path: string, options?: RequestInit) => {
     return json;
   };
 
-  return { data, loading, error, fetch };
+  return { data, loading, response: res, error, fetch };
 };
 
 export default useApi;
