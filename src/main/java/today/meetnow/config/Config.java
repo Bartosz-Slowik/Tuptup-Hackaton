@@ -24,8 +24,7 @@ import static java.util.Collections.singletonList;
 @Configuration
 @EnableSwagger2
 @EnableCaching
-@EnableWebMvc
-public class Config implements WebMvcConfigurer {
+public class Config {
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType. SWAGGER_2 )
@@ -56,8 +55,4 @@ public class Config implements WebMvcConfigurer {
         return new ApiKey("apiKey", "Authorization", "header");
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
 }
