@@ -18,7 +18,7 @@ interface Response {
 
 const RegisterForm = ({ onSuccess }: Props) => {
   const navigate = useNavigate();
-  const { loading, error, fetch } = useApi<Response>("/api/register", {
+  const { loading, error, fetch } = useApi<Response>("/register", {
     method: "POST",
   });
 

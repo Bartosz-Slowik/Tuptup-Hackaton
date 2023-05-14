@@ -12,7 +12,7 @@ interface Props {
 
 const LoginForm = ({ onSuccess }: Props) => {
   const navigate = useNavigate();
-  const { data, loading, error, fetch } = useApi("/api/login", {
+  const { data, loading, error, fetch } = useApi("/login", {
     method: "POST",
   });
 
