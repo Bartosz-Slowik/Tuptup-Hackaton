@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/Login/LoginForm";
 import MyMap from "../components/Map/Map";
 import Overview from "../components/Map/Overview";
-import MyMap from "../components/Map/Map";
-import Overview from "../components/Map/Overview";
 
 const Login = () => {
   const navigate = useNavigate();
