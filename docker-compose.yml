@@ -20,8 +20,8 @@ services:
       - POSTGRES_DB=meetnow_db
   meetnow-spring:
     build:
-      context: ./src/backend
-      dockerfile: dockerfiles/springapp.Dockerfile
+      context: ./backend # specify the path to the directory containing the Dockerfile
+      dockerfile: springapp.Dockerfile
     ports:
       - "8080:8080"
     depends_on:
