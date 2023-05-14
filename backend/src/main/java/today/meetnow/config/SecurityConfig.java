@@ -59,7 +59,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests((authorize) -> authorize
                         .mvcMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated())
@@ -71,9 +72,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .cors();
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }
     @Bean
