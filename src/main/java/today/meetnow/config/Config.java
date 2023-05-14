@@ -4,6 +4,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -21,7 +24,8 @@ import static java.util.Collections.singletonList;
 @Configuration
 @EnableSwagger2
 @EnableCaching
-public class Config {
+@EnableWebMvc
+public class Config implements WebMvcConfigurer {
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType. SWAGGER_2 )
@@ -50,5 +54,10 @@ public class Config {
 
     private SecurityScheme createSchema() {
         return new ApiKey("apiKey", "Authorization", "header");
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
     }
 }
