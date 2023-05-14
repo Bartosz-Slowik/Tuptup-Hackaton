@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
+import Date from "./Date";
 import useApi from "../../hooks/use-api";
 import { setToken } from "../../utils/auth";
 import { useNavigate } from "react-router-dom";
@@ -22,17 +23,30 @@ const RegisterForm = ({ onSuccess }: Props) => {
   });
 
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("1990-01-01");
+  const [number, setNumber] = useState("");
 
   const validName = name.length > 0;
   const validEmail = email.includes("@");
   const validPassword = password.length >= 6;
   const validConfirmPassword = confirmPassword === password;
+  const validDateOfBirth = dateOfBirth.length > 0;
+  const validNumber = number.length == 9 && !isNaN(parseInt(number));
+  const validUsername = username.length > 0;
 
   const formValid =
-    validEmail && validPassword && validConfirmPassword && validName;
+    validEmail &&
+    validPassword &&
+    validConfirmPassword &&
+    validName &&
+    validDateOfBirth &&
+    validNumber &&
+    validUsername &&
+    !loading;
 
   const onSignInHandler = () => {
     navigate("/login");
@@ -42,13 +56,15 @@ const RegisterForm = ({ onSuccess }: Props) => {
     if (!formValid) return;
     fetch({
       firstName: name,
+      lastName: "string",
+      username,
       email,
+      image: "string",
       password,
-      phone: "123456789",
-      dateOfBirth: "1990-01-01",
+      phone_nr: number,
+      dateOfBirth,
     }).then((data) => {
-      if (data?.token) {
-        setToken(data.token);
+      if (data?.ok) {
         onSuccess();
       }
     });
@@ -67,6 +83,26 @@ const RegisterForm = ({ onSuccess }: Props) => {
         onChange={setName}
         isValid={validName}
         errorMessage="Please enter your name."
+      />
+      <Input
+        name="username"
+        title="Choose a username"
+        type="text"
+        placeholder="Your username"
+        value={username}
+        onChange={setUsername}
+        isValid={validUsername}
+        errorMessage="Please enter a unique username."
+      />
+      <Input
+        name="number"
+        title="Enter your phone number"
+        type="number"
+        placeholder="Your phone number"
+        value={number}
+        onChange={setNumber}
+        isValid={validNumber}
+        errorMessage="Please enter a valid phone number."
       />
       <Input
         name="email"
@@ -97,6 +133,14 @@ const RegisterForm = ({ onSuccess }: Props) => {
         onChange={setConfirmPassword}
         isValid={validConfirmPassword}
         errorMessage="Passwords must match."
+      />
+      <Date
+        name="date-of-birth"
+        title="Date of birth"
+        value={dateOfBirth}
+        onChange={setDateOfBirth}
+        isValid={validDateOfBirth}
+        errorMessage="Please enter your date of birth."
       />
       <Button text={"Register"} disabled={!formValid} loading={loading} />
       <p className="">
