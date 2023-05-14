@@ -90,7 +90,7 @@ export default function MyMap() {
         center={center}
         onBoundsChanged={onBoundariesChangeHandler}
       >
-        {events.map((event) => {
+        {events?.map((event) => {
           return (
             <Overlay
               key={event.id}

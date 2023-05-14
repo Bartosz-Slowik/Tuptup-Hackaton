@@ -20,7 +20,7 @@ const Main = () => {
       <EventsDataProvider>
         <EventsFocusProvider>
           <MyMap />
-          <SideMenu onChangeAppState={onChangeAppStateHandler} />
+          /*<SideMenu onChangeAppState={onChangeAppStateHandler} />
           {appState === "main" && (
             <Events
               showCreateEventPopup={() => setCreateEventPopupOpen(true)}
@@ -30,7 +30,7 @@ const Main = () => {
             <Memories
               showCreateEventPopup={() => setCreateEventPopupOpen(true)}
             />
-          )}
+          )}*/
         </EventsFocusProvider>
       </EventsDataProvider>
     </div>
