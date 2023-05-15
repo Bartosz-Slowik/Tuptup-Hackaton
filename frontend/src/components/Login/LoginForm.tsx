@@ -51,8 +51,9 @@ const LoginForm = ({ onSuccess }: Props) => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <h1 className="">Log in to your account.</h1>
+      <h1 className="text-lg font-bold">Log in to your account.</h1>
       {error && <h2 className="text-red-600">{error}</h2>}
+ 
       <Input
         name="username"
         title="Username"
@@ -63,6 +64,7 @@ const LoginForm = ({ onSuccess }: Props) => {
         isValid={validEmail}
         errorMessage="Please enter a valid username."
       />
+
       <Input
         name="password"
         title="Password"
@@ -76,7 +78,8 @@ const LoginForm = ({ onSuccess }: Props) => {
       <Button text={"Log in"} disabled={!formValid} loading={loading} />
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
         If you don't have account yet{" "}
-        <a className="cursor-pointer" onClick={onSignUpHandler}>
+        <br/>
+        <a className="cursor-pointer text-blue-500" onClick={onSignUpHandler}>
           Sign up!
         </a>
       </p>
