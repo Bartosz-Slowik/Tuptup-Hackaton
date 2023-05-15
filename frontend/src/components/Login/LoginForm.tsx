@@ -39,7 +39,11 @@ const LoginForm = ({ onSuccess }: Props) => {
   useEffect(() => {
     if (response?.ok) {
       const auth = response.headers.get("Authorization");
-      //console.log(response.headers);
+      console.log(response.headers);
+      for (const header of response.headers) {
+        console.log(header);
+      }
+
       const token = auth?.split(" ")[1];
       //console.log(token);
       if (token) {
