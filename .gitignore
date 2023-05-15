@@ -8,7 +8,7 @@
 /.pnp
 .pnp.js
 .idea
-target/
+backend/target/
 
 # testing
 /coverage

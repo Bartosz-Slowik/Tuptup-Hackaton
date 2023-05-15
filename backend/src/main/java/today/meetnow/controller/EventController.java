@@ -1,10 +1,7 @@
 package today.meetnow.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import today.meetnow.model.dto.EventDto;
 import today.meetnow.model.dto.SearchFiltersDto;
 import today.meetnow.service.EventService;
@@ -14,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 @RequestMapping("/api/events/")
 public class EventController {
     private final EventService eventService;
