@@ -38,11 +38,15 @@ const LoginForm = ({ onSuccess }: Props) => {
 
   useEffect(() => {
     if (response?.ok) {
-      const auth = response.headers.get("Authentication");
+      const auth = response.headers.get("Authorization");
+      //console.log(response.headers);
       const token = auth?.split(" ")[1];
+      //console.log(token);
       if (token) {
         setToken(token);
         onSuccess();
+      } else {
+        setToken("token");
       }
     } else {
       console.log(response);
@@ -53,7 +57,7 @@ const LoginForm = ({ onSuccess }: Props) => {
     <Form onSubmit={onSubmitHandler}>
       <h1 className="text-lg font-bold">Log in to your account.</h1>
       {error && <h2 className="text-red-600">{error}</h2>}
- 
+
       <Input
         name="username"
         title="Username"
@@ -77,8 +81,7 @@ const LoginForm = ({ onSuccess }: Props) => {
       />
       <Button text={"Log in"} disabled={!formValid} loading={loading} />
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        If you don't have account yet{" "}
-        <br/>
+        If you don't have account yet <br />
         <a className="cursor-pointer text-blue-500" onClick={onSignUpHandler}>
           Sign up!
         </a>
