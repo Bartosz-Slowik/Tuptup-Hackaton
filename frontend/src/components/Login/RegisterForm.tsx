@@ -72,7 +72,7 @@ const RegisterForm = ({ onSuccess }: Props) => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <h1 className="">Register</h1>
+      <h1 className="text-lg bold">Register</h1>
       {error && <h2 className="">{error}</h2>}
       <Input
         name="name"
@@ -145,7 +145,8 @@ const RegisterForm = ({ onSuccess }: Props) => {
       <Button text={"Register"} disabled={!formValid} loading={loading} />
       <p className="">
         If you have an account{" "}
-        <a className="cursor-pointer" onClick={onSignInHandler}>
+        <br></br>
+        <a className="cursor-pointer text-blue-500" onClick={onSignInHandler}>
           Log in
         </a>
       </p>

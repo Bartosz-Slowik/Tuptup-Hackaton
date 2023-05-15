@@ -41,7 +41,7 @@ const LoginForm = ({ onSuccess }: Props) => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <h1 className="text-lg">Log in to your account.</h1>
+      <h1 className="text-lg font-bold">Log in to your account.</h1>
       {error && <h2 className="">{error}</h2>}
  
       <Input
