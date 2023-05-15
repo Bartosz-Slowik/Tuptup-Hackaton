@@ -47,6 +47,7 @@ const LoginForm = ({ onSuccess }: Props) => {
         onSuccess();
       } else {
         setToken("token");
+        onSuccess();
       }
     } else {
       console.log(response);
