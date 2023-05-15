@@ -47,7 +47,7 @@ const Input = ({
   }, [isTouched, isValid, value]);
 
   return (
-    <div className="">
+    <div className="flex flex-col justify-center items-center">
       <label htmlFor={name} className="">
         {title}
       </label>

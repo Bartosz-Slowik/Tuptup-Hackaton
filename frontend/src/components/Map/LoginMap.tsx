@@ -85,15 +85,18 @@ export default function MyMap() {
       className="absolute top-0 left-0 right-0 bottom-[30vh] md:bottom-0"
       ref={ref}
     >
+      
       <Map
         provider={provider}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         center={center}
         onBoundsChanged={onBoundariesChangeHandler}
+        mouseEvents={false}
       >
       <Marker anchor={defaultCenter} payload={1}></Marker>
       </Map>
+      
       <div className="bg-white">
       </div>
     </div>
