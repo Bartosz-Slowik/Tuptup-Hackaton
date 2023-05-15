@@ -4,29 +4,50 @@ import fetchApi from "../utils/fetchApi";
 const useApi = <T>(path: string, options?: RequestInit) => {
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | false>(false);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [res, setRes] = useState<Response | undefined>(undefined);
 
   const fetch = async (data?: Object) => {
     setLoading(true);
-    setError(false);
+    setError(undefined);
     setData(undefined);
-    let body = {};
-    if (options && data) {
-      options.body = JSON.stringify(data);
-    } else if (data) {
-      body = { body: JSON.stringify(data) };
+
+    let currentOptions = (options ? { ...options } : {}) as RequestInit;
+    if (data) currentOptions.body = JSON.stringify(data);
+
+    let response;
+    try {
+      response = await fetchApi(path, currentOptions);
+      setRes(response);
+    } catch (e) {
+      setError("Something went wrong with fetching!");
+      setLoading(false);
+      return;
     }
-    const response = await fetchApi(path, options || body);
-    setRes(response);
-    const json = await response.json();
-    if (response.ok) {
-      setData(json);
+
+    if (response.headers.get("Content-Type") === "application/json") {
+      let json = {} as T;
+      try {
+        json = (await response.json()) as T;
+        if (response.ok) {
+          setData(json);
+        } else {
+          const error = json as { message?: string };
+          setError(
+            error.message
+              ? error.message
+              : `Something went wrong! ${response.status}`
+          );
+        }
+      } catch (e) {
+        setError("Something went wrong with parsing json!");
+      }
     } else {
-      setError(json.message ? json.message : "Something went wrong!");
+      if (!response.ok) {
+        setError(`Pawel nie ustawil error message! (${response.status})`);
+      }
     }
     setLoading(false);
-    return json;
   };
 
   return { data, loading, response: res, error, fetch };

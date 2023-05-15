@@ -13,6 +13,7 @@ const fetchApi = async (path: string, options: RequestInit) => {
   };
   //options.mode = "no-cors";
   const url = `${apiUrl}${path}`;
+
   const response = await fetch(url, options);
   return response;
 };

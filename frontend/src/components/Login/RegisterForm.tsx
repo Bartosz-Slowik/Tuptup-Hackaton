@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
@@ -18,7 +18,7 @@ interface Response {
 
 const RegisterForm = ({ onSuccess }: Props) => {
   const navigate = useNavigate();
-  const { loading, error, fetch } = useApi<Response>("/register", {
+  const { response, loading, error, fetch } = useApi<Response>("/register", {
     method: "POST",
   });
 
@@ -63,17 +63,19 @@ const RegisterForm = ({ onSuccess }: Props) => {
       password,
       phone_nr: number,
       dateOfBirth,
-    }).then((data) => {
-      if (data?.ok) {
-        onSuccess();
-      }
     });
   };
+
+  useEffect(() => {
+    if (response?.ok) {
+      onSuccess();
+    }
+  }, [response, onSuccess]);
 
   return (
     <Form onSubmit={onSubmitHandler}>
       <h1 className="">Register</h1>
-      {error && <h2 className="">{error}</h2>}
+      {error && <h2 className="text-red-600">{error}</h2>}
       <Input
         name="name"
         title="Name"

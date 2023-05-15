@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form";
 import Input from "./Input";
 import Button from "./Button";
@@ -12,7 +12,7 @@ interface Props {
 
 const LoginForm = ({ onSuccess }: Props) => {
   const navigate = useNavigate();
-  const { data, loading, error, fetch } = useApi("/login", {
+  const { data, response, loading, error, fetch } = useApi("/login", {
     method: "POST",
   });
 
@@ -33,16 +33,26 @@ const LoginForm = ({ onSuccess }: Props) => {
     fetch({
       username,
       password,
-    }).then((data) => {
-      setToken(data.token);
-      onSuccess();
     });
   };
+
+  useEffect(() => {
+    if (response?.ok) {
+      const auth = response.headers.get("Authentication");
+      const token = auth?.split(" ")[1];
+      if (token) {
+        setToken(token);
+        onSuccess();
+      }
+    } else {
+      console.log(response);
+    }
+  }, [response, onSuccess]);
 
   return (
     <Form onSubmit={onSubmitHandler}>
       <h1 className="">Log in to your account.</h1>
-      {error && <h2 className="">{error}</h2>}
+      {error && <h2 className="text-red-600">{error}</h2>}
       <Input
         name="username"
         title="Username"
