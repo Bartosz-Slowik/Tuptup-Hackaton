@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/Login/LoginForm";
-import MyMap from "../components/Map/Map";
-import Overview from "../components/Map/Overview";
+import MyMap from "../components/Map/LoginMap";
 import { useEffect } from "react";
 import { getToken } from "../utils/auth";
 
@@ -29,6 +28,7 @@ const Login = () => {
         friends="John, Jane, and 5 others"
       />
       <MyMap/>*/}
+      <MyMap/>
       <div className="border">
         <LoginForm onSuccess={onSuccessHandler} />
       </div>
