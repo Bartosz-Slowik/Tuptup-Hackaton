@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/Login/LoginForm";
 import MyMap from "../components/Map/LoginMap";
 import { useEffect } from "react";
-import { getToken } from "../utils/auth";
+import { getToken, setToken } from "../utils/auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,10 +15,12 @@ const Login = () => {
   }, []);
 
   const onSuccessHandler = () => {
+    setToken("token");
     navigate("/");
   };
 
   return (
+
     <div className="flex items-start justify-center sm:justify-start">
       
   <div className=" z-10  h-screen bg-white sm:shadow-lg">
