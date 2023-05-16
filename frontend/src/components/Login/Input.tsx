@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 interface Props {
   name: string;
   title: string;
@@ -47,10 +46,9 @@ const Input = ({
   }, [isTouched, isValid, value]);
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <label htmlFor={name} className="">
-        {title}
-      </label>
+    
+    <div className="mb-4 ">
+      <div className="border-b border-purple-400 ">
       <input
         type={type}
         placeholder={placeholder}
@@ -58,11 +56,11 @@ const Input = ({
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
         name={name}
-        className={`${
-          error ? "border-red-300" : "border-gray-300"
-        } block border`}
+        id={name}
+        className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" 
       />
-      <p className={`text-xs text-red-500 ${error ? "" : "invisible"}`}>
+      </div>
+       <p className={`text-xs text-red-500 ${error ? "" : "invisible"}`}>
         {errorMessage}
       </p>
     </div>
