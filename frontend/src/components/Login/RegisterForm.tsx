@@ -71,10 +71,6 @@ const RegisterForm = ({ onSuccess }: Props) => {
       onSuccess();
     }
   }, [response, onSuccess]);
-  const aStyle = {
-    borderColor: 'rgb(212,42,70)',
-    color:'rgb(212,42,70)'
-  };
   return (
     <Form onSubmit={onSubmitHandler}>
       {error && <h2 className="text-red-600">{error}</h2>}
@@ -148,12 +144,11 @@ const RegisterForm = ({ onSuccess }: Props) => {
       />
       <Button text={"Register"} disabled={!formValid} loading={loading} />
       <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center ">
-        <div className="p-5">
+        <div className="p-5 text-black font-bold">
         If you have an account{" "}
         </div>
         <a 
-        className="cursor-pointer inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" 
-        style={aStyle}
+        className="text-purple-400 border-purple-400 cursor-pointer inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" 
         onClick={onSignInHandler}>
           Log in
         </a>

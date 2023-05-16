@@ -19,9 +19,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-start ">
+    <div className="flex items-start justify-center sm:justify-start ">
       
-  <div className=" z-10  h-screen bg-white shadow-lg">
+  <div className=" z-10  h-screen bg-white sm:shadow-lg">
     <div
       className="g-6 flex h-full text-neutral-800 flex-col justify-center" >
       <div className="w-full">
@@ -37,7 +37,7 @@ const Register = () => {
                     src="../../../public/MeetLogo.png"
                     alt="logo" />
                   <h4 className=" mt-1 pb-2 text-xl font-semibold">
-                    Register to MeetNow
+                     Register to MeetNow
                   </h4>
                 </div>
                 <RegisterForm onSuccess={onSuccessHandler} />
@@ -51,7 +51,9 @@ const Register = () => {
       </div>
     </div>
   </div>
+  <div className="hidden sm:block">
   <MyMap/>
+  </div>
   </div>
   );
 };

@@ -19,9 +19,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-start ">
+    <div className="flex items-start justify-center sm:justify-start">
       
-  <div className=" z-10  h-screen bg-white shadow-lg">
+  <div className=" z-10  h-screen bg-white sm:shadow-lg">
     <div
       className="g-6 flex h-full text-neutral-800 flex-col justify-center" >
       <div className="w-full">
@@ -51,7 +51,9 @@ const Login = () => {
       </div>
     </div>
   </div>
+  <div className="hidden sm:block">
   <MyMap/>
+  </div>
   </div>
 
   );
