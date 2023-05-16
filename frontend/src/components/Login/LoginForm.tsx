@@ -50,8 +50,9 @@ const LoginForm = ({ onSuccess }: Props) => {
   }, [response, onSuccess]);
 
   return (
+    
     <Form onSubmit={onSubmitHandler}>
-      <h1 className="text-lg font-bold">Log in to your account.</h1>
+      <h1 className="text-lg font-bold text-center p-10">Log in to your account.</h1>
       {error && <h2 className="text-red-600">{error}</h2>}
  
       <Input
@@ -76,10 +77,15 @@ const LoginForm = ({ onSuccess }: Props) => {
         errorMessage="Password must be at least 6 characters long."
       />
       <Button text={"Log in"} disabled={!formValid} loading={loading} />
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+      <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center ">
+        <div className="p-5">
         If you don't have account yet{" "}
-        <br/>
-        <a className="cursor-pointer text-blue-500" onClick={onSignUpHandler}>
+        </div>
+        <a 
+        className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" 
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        onClick={onSignUpHandler}>
           Sign up!
         </a>
       </p>
