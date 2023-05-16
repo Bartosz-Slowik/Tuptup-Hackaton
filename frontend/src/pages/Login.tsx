@@ -23,7 +23,7 @@ const Login = () => {
       
   <div className=" z-10  h-screen bg-white shadow-lg">
     <div
-      className="g-6 flex h-full text-neutral-800 flex-col justify-center">
+      className="g-6 flex h-full text-neutral-800 flex-col justify-center" >
       <div className="w-full">
         <div
           className="block rounded-lg bg-white">

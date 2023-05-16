@@ -71,13 +71,13 @@ const RegisterForm = ({ onSuccess }: Props) => {
       onSuccess();
     }
   }, [response, onSuccess]);
-
+  const aStyle = {
+    borderColor: 'rgb(212,42,70)',
+    color:'rgb(212,42,70)'
+  };
   return (
     <Form onSubmit={onSubmitHandler}>
-
-      <h1 className="text-lg bold">Register</h1>
       {error && <h2 className="text-red-600">{error}</h2>}
-
       <Input
         name="name"
         title="Name"
@@ -97,16 +97,6 @@ const RegisterForm = ({ onSuccess }: Props) => {
         onChange={setUsername}
         isValid={validUsername}
         errorMessage="Please enter a unique username."
-      />
-      <Input
-        name="number"
-        title="Enter your phone number"
-        type="number"
-        placeholder="Your phone number"
-        value={number}
-        onChange={setNumber}
-        isValid={validNumber}
-        errorMessage="Please enter a valid phone number."
       />
       <Input
         name="email"
@@ -138,6 +128,16 @@ const RegisterForm = ({ onSuccess }: Props) => {
         isValid={validConfirmPassword}
         errorMessage="Passwords must match."
       />
+      <Input
+        name="number"
+        title="Enter your phone number"
+        type="number"
+        placeholder="Your phone number"
+        value={number}
+        onChange={setNumber}
+        isValid={validNumber}
+        errorMessage="Please enter a valid phone number."
+      />
       <Date
         name="date-of-birth"
         title="Date of birth"
@@ -147,14 +147,20 @@ const RegisterForm = ({ onSuccess }: Props) => {
         errorMessage="Please enter your date of birth."
       />
       <Button text={"Register"} disabled={!formValid} loading={loading} />
-      <p className="">
+      <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center ">
+        <div className="p-5">
         If you have an account{" "}
-        <br></br>
-        <a className="cursor-pointer text-blue-500" onClick={onSignInHandler}>
+        </div>
+        <a 
+        className="cursor-pointer inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10" 
+        style={aStyle}
+        onClick={onSignInHandler}>
           Log in
         </a>
       </p>
+      {error && <h2 className="text-red-600">{error}</h2>}
     </Form>
+
   );
 };
 
