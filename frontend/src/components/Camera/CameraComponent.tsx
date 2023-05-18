@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CameraComponent: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,11 +51,24 @@ const CameraComponent: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    startVideoStream();
+  }, []);
   return (
     <div>
-      <video ref={videoRef} autoPlay></video>
-      <button onClick={startVideoStream}>Start Camera</button>
-      <button onClick={takePhoto}>Take Photo</button>
+      <div className="flex justify-center items-center relative">
+      <video ref={videoRef} autoPlay={true} className="h-screen"/>
+      <svg className="absolute bottom-0 left-1/2 transform -translate-x-1/2" width="100" height="100" onClick={takePhoto}>
+        <circle cx="50" cy="50" r="40" stroke="magenta" strokeWidth="15" fill="none" />
+        <image
+        x="25"
+        y="25"
+        href="public/MeetLogoNoBack.png"
+        height="50"
+        width="50"
+        />
+      </svg>
+    </div>
       {photoData && <img src={photoData} alt="Photo" />}
       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
     </div>

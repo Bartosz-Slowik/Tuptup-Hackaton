@@ -8,7 +8,7 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 import { removeToken } from "./utils/auth";
 import Register from "./pages/Register";
-
+import CameraComponent from "./components/Camera/CameraComponent";
 const logout = () => {
   removeToken();
   return redirect("/login");
@@ -23,7 +23,8 @@ const BrowserRouter = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={BrowserRouter} />;
+  return <CameraComponent/>;
+  {/*<RouterProvider router={BrowserRouter} />*/}
 }
 
 export default App;
