@@ -4,6 +4,7 @@ const CameraComponent: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [photoData, setPhotoData] = useState<string | null>(null);
+  const [showVideo, setShowVideo] = useState<boolean>(true);
 
   // Function to start the video stream from the camera
   const startVideoStream = async () => {
@@ -48,28 +49,60 @@ const CameraComponent: React.FC = () => {
 
       setPhotoData(photo);
       stopVideoStream();
+      setShowVideo(false);
     }
+  };
+
+  const acceptPhoto = () => {
+    // Handle accepting the photo here
+  };
+
+  const dismissPhoto = () => {
+    setPhotoData(null);
+    setShowVideo(true);
+    startVideoStream();
   };
 
   useEffect(() => {
     startVideoStream();
+    return () => {
+      stopVideoStream();
+    };
   }, []);
+
   return (
     <div>
-      <div className="flex justify-center items-center relative">
-      <video ref={videoRef} autoPlay={true} className="h-screen"/>
-      <svg className="absolute bottom-0 left-1/2 transform -translate-x-1/2" width="100" height="100" onClick={takePhoto}>
-        <circle cx="50" cy="50" r="40" stroke="magenta" strokeWidth="15" fill="none" />
-        <image
-        x="25"
-        y="25"
-        href="public/MeetLogoNoBack.png"
-        height="50"
-        width="50"
-        />
-      </svg>
-    </div>
-      {photoData && <img src={photoData} alt="Photo" />}
+      {showVideo ? (
+        <div className="flex justify-center items-center relative">
+          <video ref={videoRef} autoPlay={true} className="h-screen" />
+          <svg className=" cursor-pointer absolute bottom-0 left-1/2 transform -translate-x-1/2" width="100" height="100" onClick={takePhoto}>
+            <circle cx="50" cy="50" r="40" stroke="magenta" strokeWidth="15" fill="none" />
+            <image x="25" y="25" href="public/MeetLogoNoBack.png" height="50" width="50" />
+          </svg>
+        </div>
+      ) : (
+        <div>
+          {photoData && (
+            <div className="flex justify-center items-center relative">
+              <img src={photoData} alt="Photo" className="h-screen"/>
+            </div>
+          )}
+          <div className="flex justify-center items-center">
+          <svg className="cursor-pointer absolute bottom-0 transform -translate-x-1/2 right-1/2" width="100" height="100" onClick={acceptPhoto}>
+            <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="15" fill="none" />
+            <text x="36" y="60" fontSize="32" fill="green" fontWeight="bold">
+                ✓
+              </text>
+            </svg>
+            <svg className="cursor-pointer absolute bottom-0  transform -translate-x-1/2 left-1/2" width="100" height="100" onClick={dismissPhoto}>
+            <circle cx="50" cy="50" r="40" stroke="red" strokeWidth="15" fill="none" />
+            <text x="36" y="60" fontSize="32" fill="red" fontWeight="bold">
+            <tspan fontWeight="800">✕</tspan>
+              </text>
+            </svg>
+          </div>
+        </div>
+      )}
       <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
     </div>
   );
