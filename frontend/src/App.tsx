@@ -8,7 +8,7 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 import { removeToken } from "./utils/auth";
 import Register from "./pages/Register";
-
+import CameraComponent from "./components/Camera/CameraComponent";
 const logout = () => {
   removeToken();
   return redirect("/login");

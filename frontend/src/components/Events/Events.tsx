@@ -7,7 +7,7 @@ import FiltersRow from "./FIltersRow";
 import NewEventRow from "./NewEventRow";
 import Menu from "../UI/Menu";
 import { useEvents } from "../../hooks/EventsDataProvider";
-
+import CameraComponent from "../Camera/CameraComponent";
 interface Props {
   showCreateEventPopup: () => void;
 }
@@ -15,11 +15,16 @@ interface Props {
 export default function Events({ showCreateEventPopup }: Props) {
   const [fullScreen, setFullScreen] = useState(false);
   const { collection, setCollection } = useEvents();
+  const [showCamera, setShowCamera] = useState(false);
 
   const onFullScreenChangeHandler = () => {
     setFullScreen((prev) => !prev);
   };
 
+  const handleTakePhoto = () => {
+    setShowCamera(true);
+  };
+  
   useEffect(() => {
     if (collection !== "events") {
       setCollection("events");
@@ -36,7 +41,7 @@ export default function Events({ showCreateEventPopup }: Props) {
 
         <NewEventRow
           className={`${fullScreen && "!order-5"} order-3 md:!order-5`}
-          onTakePhoto={() => {}}
+          onTakePhoto={() => {handleTakePhoto()}}
           onUploadPhoto={() => {
             showCreateEventPopup();
           }}
@@ -55,6 +60,17 @@ export default function Events({ showCreateEventPopup }: Props) {
           }}
         />
       </Menu>
+      {showCamera ? (
+          <div className="fixed top-0 left-0 right-0 bottom-0 z-50" >
+          <CameraComponent/>
+          <button
+    className="absolute top-0 right-0 m-4 p-2  text-white rounded-full"
+    onClick={() => setShowCamera(false)}
+  >
+    X
+  </button>
+          </div>
+        ) : (<></>)}
     </div>
   );
 }
