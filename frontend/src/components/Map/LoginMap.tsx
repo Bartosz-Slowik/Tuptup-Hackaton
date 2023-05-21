@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Map, Overlay, Point, Bounds} from "pigeon-maps";
-import mapboxgl from 'mapbox-gl'; 
-import Overview from "./Overview";
+import { Map, Overlay, Point, Bounds, Marker} from "pigeon-maps";
+import mapboxgl, { MapMouseEvent } from 'mapbox-gl'; 
 import { useFocus } from "../../hooks/EventsFocusProvider";
 import { useEvents } from "../../hooks/EventsDataProvider";
-import CustomMarker from "./CustomMarker";
 
 
 
@@ -12,7 +10,7 @@ import CustomMarker from "./CustomMarker";
 //const mapStyle = "mapbox://styles/mapbox/navigation-day-v1";
 
 const defaultCenter: Point = [50.04, 19.94];
-const defaultZoom: number = 11;
+const defaultZoom: number = 14;
 
 const provider = (x: any, y: any, z: any, dpr: any) => {
   mapboxgl.accessToken = "pk.eyJ1Ijoicml0aXQiLCJhIjoiY2xmb2p0NWtrMHdkMzQ0bnJwcTZlbXh5cSJ9.DGdh4-6fvKJFvt2Pp5ZMNg";
@@ -77,43 +75,30 @@ export default function MyMap() {
     }
     setCenter(flyTo);
   }, [focusedEvent]);
+  const handleMapEvents = (e: MapMouseEvent) =>{
+    e.preventDefault();
+  }
+
 
   return (
     <div
-      className="absolute top-0 left-0 right-0 bottom-[30vh] md:left-[22rem] md:bottom-0"
+      className="absolute top-0 left-0 right-0 bottom-[30vh] md:bottom-0"
       ref={ref}
     >
+      
       <Map
         provider={provider}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         center={center}
         onBoundsChanged={onBoundariesChangeHandler}
+        mouseEvents={false}
       >
-        {events?.map((event) => {
-          return (
-            <Overlay
-              key={event.id}
-              anchor={[event.coordinates[1], event.coordinates[0]]}
-              className={`${event === focusedEvent ? "z-20" : "z-10"} h-0 w-0 `}
-            >
-              {event === focusedEvent ? (
-                <Overview
-                  title={event.title}
-                  description={event.description}
-                  image={`/uploads/${event.image}`}
-                  friends={"PLACEHOLDER"}
-                />
-              ) : (
-                <CustomMarker
-                  type={event.type}
-                  onClick={() => setFocusedEvent(event)}
-                />
-              )}
-            </Overlay>
-          );
-        })}
+      <Marker anchor={defaultCenter} payload={1}></Marker>
       </Map>
+      
+      <div className="bg-white">
+      </div>
     </div>
   );
 }

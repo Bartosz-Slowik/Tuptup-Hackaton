@@ -1,11 +1,14 @@
 services:
-#  react-app:
-#    container_name: frontend
-#    build:
-#      context: ./frontend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:3000"
+
+  react-app:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./public:/app/public
 
   meetnow-db:
     image: postgis/postgis:latest

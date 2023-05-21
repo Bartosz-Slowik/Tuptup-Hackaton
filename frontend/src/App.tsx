@@ -1,48 +1,29 @@
-import { useState } from "react";
-import SideMenu from "./components/SideMenu/SideMenu";
-import MyMap from "./components/Map/Map";
-import Events from "./components/Events/Events";
-import CreateEvent from "./components/createEvent";
-import { EventsDataProvider } from "./hooks/EventsDataProvider";
-import { EventsFocusProvider } from "./hooks/EventsFocusProvider";
-import Memories from "./components/Memories/Memories";
-
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router-dom";
 import "./App.css";
+import Main from "./pages/Main";
+import Login from "./pages/Login";
+import { removeToken } from "./utils/auth";
+import Register from "./pages/Register";
+import CameraComponent from "./components/Camera/CameraComponent";
+const logout = () => {
+  removeToken();
+  return redirect("/login");
+};
+
+const BrowserRouter = createBrowserRouter([
+  { path: "/", element: <Main />, id: "home" },
+  { path: "/login", element: <Login />, id: "login" },
+  { path: "/register", element: <Register />, id: "register" },
+  { path: "/logout", id: "logout", loader: logout },
+  { path: "*", element: <div>Not found</div>, id: "not-found" },
+]);
 
 function App() {
-  const [createEventPopupOpen, setCreateEventPopupOpen] = useState(false);
-  //TODO - move to react router
-  const [appState, setAppState] = useState<"main" | "memories">("main");
-
-  const onChangeAppStateHandler = (state: "main" | "memories") => {
-    setAppState(state);
-  };
-
-  return (
-    <div className="z-5 flex w-screen flex-col">
-      <EventsDataProvider>
-        <EventsFocusProvider>
-          <MyMap />
-          <SideMenu onChangeAppState={onChangeAppStateHandler} />
-          {appState === "main" && (
-            <Events
-              showCreateEventPopup={() => setCreateEventPopupOpen(true)}
-            />
-          )}
-          {appState === "memories" && (
-            <Memories
-              showCreateEventPopup={() => setCreateEventPopupOpen(true)}
-            />
-          )}
-        </EventsFocusProvider>
-      </EventsDataProvider>
-      {createEventPopupOpen && (
-        <CreateEvent
-          hideCreateEventPopup={() => setCreateEventPopupOpen(false)}
-        />
-      )}
-    </div>
-  );
+  return <RouterProvider router={BrowserRouter} />;
 }
 
 export default App;

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiCamera} from "react-icons/hi2";
 import { BiCalendarEvent } from "react-icons/bi";
 import BigButton from "../UI/BigButton";
+import CameraComponent from "../Camera/CameraComponent";
 
 interface Props {
   className?: string;
   onTakePhoto: () => void;
   onUploadPhoto: () => void;
 }
+
 
 const NewEventRow = ({ className, onTakePhoto, onUploadPhoto }: Props) => {
   return (
