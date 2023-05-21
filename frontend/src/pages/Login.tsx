@@ -36,7 +36,7 @@ const Login = () => {
                     <div className="text-center">
                       <img
                         className="mx-auto w-48"
-                        src="public/MeetLogo.png"
+                        src="/public/MeetLogo.png"
                         alt="logo" />
                       <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
                         Do you want to Meet Now ?

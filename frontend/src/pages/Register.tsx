@@ -34,7 +34,7 @@ const Register = () => {
                     <div className="text-center">
                       <img
                         className="mx-auto w-48"
-                        src="public/MeetLogo.png"
+                        src="/public/MeetLogo.png"
                         alt="logo" />
                       <h4 className=" mt-1 pb-2 text-xl font-semibold">
                         Register to MeetNow

@@ -23,8 +23,7 @@ const BrowserRouter = createBrowserRouter([
 ]);
 
 function App() {
-  return <CameraComponent/>;
-  {/*<RouterProvider router={BrowserRouter} />*/}
+  return <RouterProvider router={BrowserRouter} />;
 }
 
 export default App;

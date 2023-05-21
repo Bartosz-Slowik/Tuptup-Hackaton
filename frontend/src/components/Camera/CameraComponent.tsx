@@ -71,30 +71,30 @@ const CameraComponent: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="h-full ">
       {showVideo ? (
-        <div className="flex justify-center items-center relative">
-          <video ref={videoRef} autoPlay={true} className="h-screen" />
+        <div className="flex justify-center items-center relative h-full">
+          <video ref={videoRef} autoPlay={true} className="h-screen w-screen object-cover" />
           <svg className=" cursor-pointer absolute bottom-0 left-1/2 transform -translate-x-1/2" width="100" height="100" onClick={takePhoto}>
             <circle cx="50" cy="50" r="40" stroke="magenta" strokeWidth="15" fill="none" />
             <image x="25" y="25" href="public/MeetLogoNoBack.png" height="50" width="50" />
           </svg>
         </div>
       ) : (
-        <div>
+        <div className="h-full">
           {photoData && (
             <div className="flex justify-center items-center relative">
-              <img src={photoData} alt="Photo" className="h-screen"/>
+              <img src={photoData} alt="Photo" className="h-screen w-screen object-cover"/>
             </div>
           )}
           <div className="flex justify-center items-center">
-          <svg className="cursor-pointer absolute bottom-0 transform -translate-x-1/2 right-1/2" width="100" height="100" onClick={acceptPhoto}>
+          <svg className="cursor-pointer absolute bottom-0 transform right-1/2" width="100" height="100" onClick={acceptPhoto}>
             <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="15" fill="none" />
             <text x="36" y="60" fontSize="32" fill="green" fontWeight="bold">
                 ✓
               </text>
             </svg>
-            <svg className="cursor-pointer absolute bottom-0  transform -translate-x-1/2 left-1/2" width="100" height="100" onClick={dismissPhoto}>
+            <svg className="cursor-pointer absolute bottom-0  transform left-1/2" width="100" height="100" onClick={dismissPhoto}>
             <circle cx="50" cy="50" r="40" stroke="red" strokeWidth="15" fill="none" />
             <text x="36" y="60" fontSize="32" fill="red" fontWeight="bold">
             <tspan fontWeight="800">✕</tspan>
