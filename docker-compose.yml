@@ -1,0 +1,36 @@
+services:
+
+  react-app:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./public:/app/public
+
+  meetnow-db:
+    image: postgis/postgis:latest
+    hostname: postgres-host
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=meetnow-password
+      - POSTGRES_USER=meetnow-user
+      - POSTGRES_DB=meetnow_db
+  meetnow-spring:
+    build:
+      context: ./backend # specify the path to the directory containing the Dockerfile
+      dockerfile: springapp.Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - meetnow-db
+    environment:
+      WAIT_HOSTS: postgres-host
+      SPRING_DATASOURCE_URL: jdbc:postgresql://meetnow-db:5432/meetnow_db
+volumes:
+  pgdata:

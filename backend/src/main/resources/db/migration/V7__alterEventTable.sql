@@ -1,0 +1,6 @@
+ALTER TABLE event
+ADD COLUMN start_date TIMESTAMP,
+ADD COLUMN end_date TIMESTAMP;
+
+ALTER TABLE event_post
+ADD COLUMN created TIMESTAMP;
